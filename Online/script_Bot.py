@@ -6,7 +6,7 @@ import qrcode
 import io
 
 # Token do seu bot
-TOKEN_BOT = "7061009048:AAFqeIht-XctkKinw_CgfOQKHynPsC74iHs"
+TOKEN_BOT = "7152044356:AAF0SjFkBUH0ecGs-RUmWur5Ih_lNnRnvHw"
 
 # Inicialização do bot
 bot = telebot.TeleBot(TOKEN_BOT)
@@ -29,7 +29,7 @@ def enviar_mensagem_boas_vindas(chat_id, nome_usuario, saudacao):
     btn1 = types.InlineKeyboardButton(text='Pagamento', callback_data='pagamento')
     btn2 = types.InlineKeyboardButton(text='Voltar ao cardápio', callback_data='voltarCardapio')
     btn3 = types.InlineKeyboardButton(text='Chamar Garçom', callback_data='chamarGarçom')
-    btn4 = types.InlineKeyboardButton(text='Cancelar Pedido', callback_data='cancelarPedido')  # Novo botão
+    btn4 = types.InlineKeyboardButton(text='Cancelar Pedido', callback_data='cancelarPedido')
     markup.add(btn1, btn2, btn3, btn4)
     
     mensagem_boas_vindas = f"{saudacao}, {nome_usuario} 😊, tudo bem?\n\n"
@@ -82,7 +82,6 @@ def manipular_query_opcoes_iniciais(call):
         bot.send_message(call.message.chat.id, "Seu pedido foi cancelado. Obrigado por visitar o nosso restaurante. 🍽️")
         bot.leave_chat(call.message.chat.id)  # Comando para o bot sair da conversa
 
-# Funções de geração de Pix e QR Code continuam as mesmas
 
 # Função para gerar chave Pix
 def gerar_chave_pix():

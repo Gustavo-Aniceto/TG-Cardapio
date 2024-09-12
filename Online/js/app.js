@@ -10,7 +10,7 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 5;
 
-CELULAR_EMPRESA = '5579981341962';
+CELULAR_EMPRESA = '5511962907026';
 
 cardapio.eventos = {
     init: () => {
@@ -474,20 +474,6 @@ cardapio.metodos = {
 
     },
 
-    abrirDepoimento: (depoimento) => {
-
-        $("#depoimento-1").addClass('hidden');
-        $("#depoimento-2").addClass('hidden');
-        $("#depoimento-3").addClass('hidden');
-
-        $("#btnDepoimento-1").removeClass('active');
-        $("#btnDepoimento-2").removeClass('active');
-        $("#btnDepoimento-3").removeClass('active');
-
-        $("#depoimento-"+depoimento).removeClass('hidden');
-        $("#btnDepoimento-"+depoimento).addClass('active');
-
-    },
 
     mensagem: (texto, cor = 'red', tempo = 3500) => {
         let id = Math.floor(Date.now * Math.random()).toString();
