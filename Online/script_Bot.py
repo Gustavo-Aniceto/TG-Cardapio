@@ -71,7 +71,7 @@ def manipular_query_opcoes_iniciais(call):
         bot.send_message(call.message.chat.id, "Escolha a forma de pagamento:", reply_markup=markup)
 
     elif call.data == 'voltarCardapio':
-        url = "https://www.jdhbckasjdbvjks.com"
+        url = "https://tg-cardapio.vercel.app/"
         mensagem = f"Para voltar ao cardápio, clique no link abaixo:\n[Voltar ao Cardápio]({url})"
         bot.send_message(call.message.chat.id, mensagem, parse_mode='Markdown')
 
