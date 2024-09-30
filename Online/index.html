@@ -510,12 +510,28 @@
 
                 <a onclick="cardapio.metodos.carregarEndereco(2)" class="btn btn-yellow float-right" id="btnEtapaPedido">Continuar</a>
                 <a onclick="cardapio.metodos.resumoPedido()" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">Revisar pedido</a>
-                <a href={{link_pagamento}}>Realizar pagamento</a>
+                <a id="btn-pagamento" href="#">Realizar pagamento</a>
 
                 <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="btnVoltar">Voltar</a>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('btn-pagamento').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            fetch('http://localhost:3000/gerar-link-pagamento')
+                .then(response => response.json())
+                .then(data => {
+                    // Redireciona para o link de pagamento
+                    window.location.href = data.link_pagamento;
+                })
+                .catch(error => {
+                    console.error('Erro ao gerar o link de pagamento:', error);
+                });
+        });
+    </script>
 
     <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="./js/modernizr-3.5.0.min.js"></script>

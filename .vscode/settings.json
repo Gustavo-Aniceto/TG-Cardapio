@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./Online/api",
+        "./Online/api",
+        "./Online/api"
+    ]
+}

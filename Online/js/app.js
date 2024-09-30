@@ -419,10 +419,11 @@ cardapio.metodos = {
     },
 
 
-   // Atualiza o link do botão do Telegram
-finalizarPedido: () => {
-    if (MEU_CARRINHO.length > 0 && MEU_ENDERECO != null) {
-        var texto = 'Olá! Gostaria de fazer um pedido:';
+   // Atualiza o link do botão do WhatsApp
+   finalizarPedido: () => {
+
+    if(MEU_CARRINHO.length > 0 && MEU_ENDERECO != null) {
+        var texto = 'Olá! gostaria de fazer um pedido:';
         texto += `\n*Itens do pedido:*\n\n\${itens}`;
         texto += '\n*Endereço de entrega:*';
         texto += `\n${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`;
@@ -433,27 +434,20 @@ finalizarPedido: () => {
 
         $.each(MEU_CARRINHO, (i, e) => {
             itens += `*${e.qntd}x* ${e.name} ........ R$ ${e.price.toFixed(2).replace('.', ',')} \n`;
+        
+            if((i+1) == MEU_CARRINHO.length) {
 
-            if ((i + 1) == MEU_CARRINHO.length) {
                 texto = texto.replace(/\${itens}/g, itens);
 
-                // Montar a URL da API do Telegram
-                let chat_id = 'GO_resteuranteBot';  // Substitua pelo seu chat_id
-                let token = '7061009048:AAFqeIht-XctkKinw_CgfOQKHynPsC74iHs';  // Substitua pelo seu token do bot
-                let message = encodeURIComponent(texto);
-                let URL = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${message}&parse_mode=Markdown`;
+                // converte a URL
+                let encode = encodeURI(texto);
+                let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
 
-                // Enviar a requisição para o Telegram
-                $.get(URL, (response) => {
-                    if (response.ok) {
-                        alert('Pedido enviado com sucesso!');
-                    } else {
-                        alert('Erro ao enviar o pedido.');
-                    }
-                });
+                $("#btnEtapaResumo").attr('href', URL);
             }
-        });
-    }    
+        })
+    }
+
 },
 
     // carrega o link do botão reserva

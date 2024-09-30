@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Errada</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            animation: fadeIn 1s ease-in-out; /* Efeito de fade-in */
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+            animation: shake 1s infinite; /* Efeito de shake */
+        }
+
+        .error-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: red; /* Cor vermelha para mensagem de erro */
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite; /* Efeito de pulse */
+        }
+
+        .menu-button {
+            background-color: yellow;
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Sombra para o botão */
+            transition: transform 0.2s ease; /* Transição suave para efeito de hover */
+        }
+
+        .menu-button:hover {
+            background-color: #f4c542;
+            transform: translateY(-3px); /* Levanta o botão no hover */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="/Online/img/logo.png" alt="Logo" class="logo">
+        <p class="error-message">O pagamento não foi aprovado.</p>
+        <a class="menu-button" href="index.html">Voltar ao Cardápio</a>
+    </div>
+
+</body>
+</html>
