@@ -546,3 +546,30 @@ cardapio.templates = {
         </div>
     `
 }
+
+// Função para abrir o modal de pagamento
+function abrirModalPagamento() {
+    document.getElementById('modalCarrinho').classList.add('hidden');
+    document.getElementById('modalPagamento').classList.remove('hidden');
+    gerarChavePix();
+}
+
+// Função para fechar o modal de pagamento
+function fecharModalPagamento() {
+    document.getElementById('modalPagamento').classList.add('hidden');
+}
+
+// Função para gerar uma chave PIX aleatória
+function gerarChavePix() {
+    const chavePix = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    document.getElementById('chavePix').value = chavePix;
+}
+
+// Função para copiar a chave PIX
+function copiarChavePix() {
+    const chavePixInput = document.getElementById('chavePix');
+    chavePixInput.select();
+    document.execCommand('copy');
+    alert('Chave PIX copiada!');
+}
+
