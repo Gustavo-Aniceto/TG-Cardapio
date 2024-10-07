@@ -269,7 +269,7 @@
                     <div class="etapa etapa1 active">1</div>
                     <div class="etapa etapa2">2</div>
                     <div class="etapa etapa3">3</div>
-                    <div class="etapa etapa4 hidden">4</div>
+                    <div class="etapa etapa4">4</div>
                 </div>
                 <p class="title-carrinho mt-4">
                     <b id="lblTituloEtapa">Seu carrinho:</b>
@@ -278,159 +278,173 @@
         </div>
         <div class="m-body">
             <div class="container">
-                <div id="itensCarrinho" class="row mr-0 ml-0 animated fadeIn hidden"></div>
+                <div id="itensCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">         
+                </div>
 
                 <div id="localEntrega" class="row mr-0 ml-0 animated fadeIn hidden">
                     <div class="col-12 col-lg-4 col-md-4 col-sm-12">
                         <div class="form-group container-cep">
                             <label>CEP</label>
-                            <input id="txtCEP" type="text" class="form-control" />
+                            <input id="txtCEP" type="text" class="form-control"/>
                             <a class="btn btn-yellow btn-sm" onclick="cardapio.metodos.buscarCep()">
                                 <i class="fa fa-search"></i>
                             </a>
                         </div>
                     </div>
                     <div class="col-8 no-mobile"></div>
+
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label>Endereço</label>
-                            <input id="txtEndereco" type="text" class="form-control" />
+                            <input id="txtEndereco" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Bairro</label>
-                            <input id="txtBairro" type="text" class="form-control" />
+                            <input id="txtBairro" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="col-12 col-lg-2 col-md-2 col-sm-12">
                         <div class="form-group">
-                            <label>Número</label>
-                            <input id="txtNumero" type="text" class="form-control" />
+                            <label>Número
+                            </label>
+                            <input id="txtNumero" type="text" class="form-control"/>
                         </div>
                     </div>
+
                     <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label>Cidade</label>
-                            <input id="txtCidade" type="text" class="form-control" />
+                            <input id="txtCidade" type="text" class="form-control"/>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4 col-md-4 col-sm-12">
                         <div class="form-group">
                             <label>Complemento</label>
-                            <input id="txtComplemento" type="text" class="form-control" />
+                            <input id="txtComplemento" type="text" class="form-control"/>
                         </div>
                     </div>
-                    </select>
+                    <div class="col-12 col-lg-2 col-md-2 col-sm-12">
+                        <div class="form-group">
+                            <label>UF</label>
+                            <select class="form-control" id="ddlUf">
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MT">MT</option>
+                                <option value="MS">MS</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
-            <div class="col-12">
-                <p class="title-carrinho mt-4">
-                    <b>Itens do pedido:</b>
-                </p>
-            </div>
-            <div class="col-12">
-                <div class="row" id="listaItensResumo"></div>
-            </div>
-            <div class="col-12">
-                <p class="title-carrinho mt-4">
-                    <b>Local de entrega:</b>
-                </p>
-            </div>
-            <div class="col-12 item-carrinho resumo">
-                <div class="img-map">
-                    <i class="fas fa-map-marked-alt"></i>
-                </div>
-                <div class="dados-produto">
-                    <p class="texto-endereco">
-                        <b id="resumoEndereco"></b>
-                    </p>
-                    <p class="cidade-endereco" id="cidadendereco"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+                <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
+                    <div class="col-12">
+                        <p class="title-carrinho mt-4">
+                            <b>Itens do pedido:</b>
+                        </p>
+                    </div>
 
-    <div class="m-footer">
-        <div class="container">
-            <div class="container-total text-right mb-4">
-                <p class="mb-0">
-                    <span>Subtotal:</span>
-                    <span id="lblSubTotal">R$ 0,00</span>
-                </p>
-                <p class="mb-0 texto-entrega">
-                    <span><i class="fas fa-motorcycle"> Entrega:</i></span>
-                    <span id="lblValorEntrega">+ R$ 0,00</span>
-                </p>
-                <p class="mb-0 texto-total">
-                    <span><b>Total:</b></span>
-                    <span class="valor-total"><b id="lblValorTotal">R$ 0,00</b></span>
-                </p>
-            </div>
+                    <div class="col-12">
+                        <div class="row" id="listaItensResumo">
+                        </div>
+                    </div>
 
-            <div id="pagamento" class="row mr-0 ml-0 animated fadeIn hidden">
-                <div class="col-12 text-center">
-                    <p class="mt-4">
-                        <b>Escaneie o QR Code ou use a chave PIX abaixo:</b>
-                    </p>
-                    <img src="url-do-qrcode" alt="QR Code de Pagamento" id="qrCodePagamento" class="mb-4" />
-
-                    <p><b>Chave PIX:</b></p>
-                    <div class="form-group">
-                        <input type="text" id="chavePix" class="form-control text-center" readonly value="" />
-                        <button class="btn btn-yellow mt-2" onclick="copiarChavePix()">Copiar Chave</button>
+                    <div class="col-12">
+                        <p class="title-carrinho mt-4">
+                            <b>Local de entrega:</b>
+                        </p>
+                    </div>
+                    
+                    <div class="col-12 item-carrinho resumo">
+                        <div class="img-map">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="dados-produto">
+                            <p class="texto-endereco">
+                                <b id="resumoEndereco"></b>
+                            </p>
+                            <p class="cidade-endereco" id="cidadendereco">
+                            </p>
+                            <a onclick="cardapio.metodos.confirmarPagamento()" class="btn btn-yellow">Realizar Pagamento</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <a onclick="carregarEtapa4()" class="btn btn-yellow float-right" id="btnEtapaResumo">Realizar
-                Pagamento</a>
-            <a onclick="finalizarPedido()" class="btn btn-yellow float-right hidden" id="btnEnviarPedido">Enviar
-                Pedido</a>
-            <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden"
-                id="btnVoltar">Voltar</a>
+
+        <div class="modal-full animated fadeIn hidden" id="modalPagamento">
+            <div class="m-header">
+                <h4>Informações de Pagamento</h4>
+                
+            </div>
+            <div class="m-body">
+                <p>Chave PIX: <b id="chavePix"></b></p>
+                <div id="qrCodeContainer"></div>
+            </div>
+            <div class="m-footer">
+                <a href="#" target="_blank" class="btn btn-yellow float-right hidden" id="btnEtapaResumo">Enviar pedido</a>
+            </div>
+        </div>
+        
+        
+        <div class="m-footer">
+            <div class="container">
+                <div class="container-total text-right mb-4">
+                    <p class="mb-0">
+                        <span>Subtotal:</span>
+                        <span id="lblSubTotal">R$ 0,00</span>
+                    </p>
+                    <p class="mb-0 texto-entrega">
+                        <span><i class="fas fa-motorcycle"> Entrega:</i></span>
+                        <span id="lblValorEntrega">+ R$ 0,00</span>
+                    </p>
+                    <p class="mb-0 texto-total">
+                        <span><b>Total:</b></span>
+                        <span class="valor-total"><b id="lblValorTotal">R$  0,00</b></span>
+                    </p>
+                </div>
+
+                <a onclick="cardapio.metodos.carregarEndereco(2)" class="btn btn-yellow float-right" id="btnEtapaPedido">Continuar</a>
+                <a onclick="cardapio.metodos.resumoPedido()" class="btn btn-yellow float-right hidden" id="btnEtapaEndereco">Revisar pedido</a>
+
+                <a onclick="cardapio.metodos.voltarEtapa()" class="btn btn-white float-right mr-3 hidden" id="btnVoltar">Voltar</a>
+            </div>
         </div>
     </div>
-    </div>
 
-    <script>
-        function carregarEtapa4() {
-            document.getElementById('itensCarrinho').classList.add('hidden');
-            document.getElementById('localEntrega').classList.add('hidden');
-            document.getElementById('resumoCarrinho').classList.add('hidden');
-            document.getElementById('pagamento').classList.remove('hidden');
-            document.getElementById('lblTituloEtapa').innerText = 'Pagamento:';
-            document.getElementById('btnEtapaResumo').classList.add('hidden');
-            document.getElementById('btnEnviarPedido').classList.remove('hidden');
-            gerarChavePix();
-        }
-
-        function gerarChavePix() {
-            const chavePix = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-            document.getElementById('chavePix').value = chavePix;
-        }
-
-        function copiarChavePix() {
-            const chavePixInput = document.getElementById('chavePix');
-            chavePixInput.select();
-            document.execCommand('copy');
-            alert('Chave PIX copiada!');
-        }
-    </script>
-
-    <script src="./js/jquery-1.12.4.min.js"></script>
-    <script src="./js/modernizr-3.5.0.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/popper.min.js"></script>
-    <script src="./js/wow.min.js"></script>
-    <script src="./js/dados.js"></script>
-    <script src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./js/modernizr-3.5.0.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/popper.min.js"></script>
+    <script type="text/javascript" src="./js/wow.min.js"></script>
+    <script type="text/javascript" src="./js/dados.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
 
     <script>new WOW().init();</script>
 </body>
-
 </html>
