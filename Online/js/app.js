@@ -10,6 +10,13 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 5;
 
+var VALOR_TOTAL = VALOR_CARRINHO+VALOR_ENTREGA;
+
+const chavePix = "54306417824";
+const nome = "G&O RESTAURANTE";
+const cidade = "GUARULHOS";
+const valor_total = VALOR_TOTAL;
+
 CELULAR_EMPRESA = '5511958705804';
 
 cardapio.eventos = {
@@ -526,10 +533,12 @@ carregarPagamento: () => {
 }
 
 
-cardapio.metodos.confirmarPagamento = function() {
+cardapio.metodos.carregarPagamento = function() {
     // Aqui você pode definir a chave PIX e gerar o QR Code, se necessário
-    document.getElementById("chavePix").innerText = "sua-chave-pix-aqui"; // Substitua pela sua chave
-    gerarQrCode("valor-do-pedido"); // Substitua pelo valor real do pedido
+    document.getElementById("chavePix").innerText = "54306417824"; 
+    
+    // Chama a função de geração de QR Code com os parâmetros necessários
+    gerarQrCodePix("54306417824", "G&O RESTAURANTE", "Guarulhos", valor_total);
 
     // Abre o modal de pagamento
     abrirModalPagamento();
@@ -544,18 +553,64 @@ function fecharModalPagamento() {
     document.getElementById("modalPagamento").classList.add("hidden");
 }
 
-function gerarQrCode(valor) {
-    // Lógica para gerar QR Code e inserir no container
+function gerarQrCodePix(chavePix, nome, cidade, valor) {
     const qrCodeContainer = document.getElementById("qrCodeContainer");
-    qrCodeContainer.innerHTML = ""; // Limpa o container
-    // Insira aqui a lógica para gerar o QR Code
+    qrCodeContainer.innerHTML = ""; 
+    const payload = montarPayloadPix(chavePix, nome, cidade, valor);
+    
+    new QRCode(qrCodeContainer, {
+        text: payload,
+        width: 256,
+        height: 256,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
+function montarPayloadPix(chavePix, nome, cidade, valor) {
+    // Função para criar a string de pagamento Pix no formato do QR Code
+    const payloadFormatIndicator = "000201";
+    const merchantAccountInformation = `0014BR.GOV.BCB.PIX01${chavePix.length}${chavePix}`;
+    const merchantCategoryCode = "52040000";
+    const transactionCurrency = "5303986";
+    const transactionAmount = valor ? `54${valor.toFixed(2).replace(".", "")}` : ""; // Utilize 'valor' em vez de 'valor_total'
+    const countryCode = "5802BR";
+    const merchantName = `59${nome.length}${nome}`;
+    const merchantCity = `60${cidade.length}${cidade}`;
+    const crc16 = "6304"; 
+
+    // String completa antes do CRC16
+    let payload = `${payloadFormatIndicator}${merchantAccountInformation}${merchantCategoryCode}${transactionCurrency}${transactionAmount}${countryCode}${merchantName}${merchantCity}${crc16}`;
+
+    // Adiciona o CRC16
+    payload += gerarCRC16(payload);
+    return payload;
+}
+
+function gerarCRC16(payload) {
+    // Função para calcular o CRC16 (baseado no padrão Pix)
+    let polinomio = 0x1021;
+    let resultado = 0xFFFF;
+
+    for (let i = 0; i < payload.length; i++) {
+        resultado ^= payload.charCodeAt(i) << 8;
+        for (let j = 0; j < 8; j++) {
+            if ((resultado & 0x8000) !== 0) {
+                resultado = (resultado << 1) ^ polinomio;
+            } else {
+                resultado <<= 1;
+            }
+        }
+    }
+    return (resultado & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
 }
 
 function avancarParaProximaEtapa() {
     fecharModalPagamento();
-    // Chame a função que avança para a próxima etapa
-    cardapio.metodos.carregarEndereco(2); // Ou a função que você usa para avançar
+    cardapio.metodos.carregarEndereco(2);
 }
+
 
 
 
