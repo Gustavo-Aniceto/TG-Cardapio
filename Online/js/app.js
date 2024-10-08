@@ -502,114 +502,21 @@ atualizarCarrinho: (id, qntd) => {
     cardapio.metodos.atualizarBadgeTotal();
     cardapio.metodos.carregarValores();
 }
-carregarPagamento: () => {
-    // Lógica para confirmar pagamento
-    alert('Pagamento confirmado!');
-    // Após confirmação, habilita o botão para enviar pedido
-    $("#btnEtapaPagamento").addClass('hidden');
-    $("#btnEtapaResumo").removeClass('hidden');
-
-
-}
-cardapio.metodos.carregarPagamento = function() {
-    // Aqui você pode definir a chave PIX e gerar o QR Code, se necessário
-    document.getElementById("chavePix").innerText = "54306417824"; 
-    
-    // Chama a função de geração de QR Code com os parâmetros necessários
-    gerarQrCodePix("54306417824", "G&O RESTAURANTE", "Guarulhos", valor_total);
-
-    // Abre o modal de pagamento
-    abrirModalPagamento();
-};
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Garantir que o modal é carregado após o DOM estar pronto
-    function abrirModalPagamento() {
-        const modal = document.getElementById("modalPagamento");
-        if (modal) {
-            modal.classList.remove("hidden");
-        } else {
-            console.error("Modal de pagamento não encontrado!");
-        }
-    }
-
-    // Conectar o evento ao botão
-    const pagamentoButton = document.querySelector('.btn-yellow');
-    if (pagamentoButton) {
-        pagamentoButton.onclick = function() {
-            cardapio.metodos.carregarPagamento();
-        };
-    }
-});
-
-
-
-function fecharModalPagamento() {
-    document.getElementById("modalPagamento").classList.add("hidden");
-}
-
-function gerarQrCodePix(chavePix, nome, cidade, valor) {
-    const qrCodeContainer = document.getElementById("qrCodeContainer");
-    qrCodeContainer.innerHTML = ""; 
-    const payload = montarPayloadPix(chavePix, nome, cidade, valor);
-    
-    new QRCode(qrCodeContainer, {
-        text: payload,
-        width: 256,
-        height: 256,
-        colorDark: "#000000",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.H
+  // Função para abrir o modal
+  function meuModalPagamento() {
+    // Seleciona o modal
+    var meuModal = new bootstrap.Modal(document.getElementById('meuModalPagamento'), {
+        keyboard: false // Impede que o modal feche com a tecla Esc
     });
+
+    // Abre o modal
+    meuModal.show();
 }
 
-function montarPayloadPix(chavePix, nome, cidade, valor) {
-    // Função para criar a string de pagamento Pix no formato do QR Code
-    const payloadFormatIndicator = "000201";
-    const merchantAccountInformation = `0014BR.GOV.BCB.PIX01${chavePix.length}${chavePix}`;
-    const merchantCategoryCode = "52040000";
-    const transactionCurrency = "5303986";
-    const transactionAmount = valor ? `54${valor.toFixed(2).replace(".", "")}` : ""; // Utilize 'valor' em vez de 'valor_total'
-    const countryCode = "5802BR";
-    const merchantName = `59${nome.length}${nome}`;
-    const merchantCity = `60${cidade.length}${cidade}`;
-    const crc16 = "6304"; 
-
-    // String completa antes do CRC16
-    let payload = `${payloadFormatIndicator}${merchantAccountInformation}${merchantCategoryCode}${transactionCurrency}${transactionAmount}${countryCode}${merchantName}${merchantCity}${crc16}`;
-
-    // Adiciona o CRC16
-    payload += gerarCRC16(payload);
-    return payload;
-}
-
-function gerarCRC16(payload) {
-    // Função para calcular o CRC16 (baseado no padrão Pix)
-    let polinomio = 0x1021;
-    let resultado = 0xFFFF;
-
-    for (let i = 0; i < payload.length; i++) {
-        resultado ^= payload.charCodeAt(i) << 8;
-        for (let j = 0; j < 8; j++) {
-            if ((resultado & 0x8000) !== 0) {
-                resultado = (resultado << 1) ^ polinomio;
-            } else {
-                resultado <<= 1;
-            }
-        }
-    }
-    return (resultado & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
-}
-
-
-function avancarParaProximaEtapa() {
-    fecharModalPagamento();
-    cardapio.metodos.carregarEndereco(2);
-}
-
-
-
-
+// Adiciona o evento de clique ao botão
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('botaoAbrirModal').addEventListener('click', meuModalPagamento);
+});
 
 cardapio.templates = {
     item: `
