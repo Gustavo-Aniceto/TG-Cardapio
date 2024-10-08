@@ -518,6 +518,21 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('botaoAbrirModal').addEventListener('click', meuModalPagamento);
 });
 
+
+document.getElementById("btnFecharModal").addEventListener("click", function() {
+    // Ocultar o modal
+    var modal = bootstrap.Modal.getInstance(document.getElementById('meuModalPagamento'));
+    modal.hide();
+
+    // Exibir a seção de resumo do pedido
+    mostrarResumoDoPedido();
+});
+
+function mostrarResumoDoPedido() {
+   
+    document.getElementById("resumoCarrinho").style.display = "block"; // Exibe o resumo do pedido
+}
+
 cardapio.templates = {
     item: `
         <div class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 animated fadeInUp">
