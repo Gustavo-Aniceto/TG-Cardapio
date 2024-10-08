@@ -8,14 +8,10 @@ var MEU_CARRINHO = [];
 var MEU_ENDERECO = null;
 
 var VALOR_CARRINHO = 0;
-var VALOR_ENTREGA = 5;
+var VALOR_ENTREGA = 10;
 
 var VALOR_TOTAL = VALOR_CARRINHO+VALOR_ENTREGA;
 
-const chavePix = "54306417824";
-const nome = "G&O RESTAURANTE";
-const cidade = "GUARULHOS";
-const valor_total = VALOR_TOTAL;
 
 CELULAR_EMPRESA = '5511958705804';
 
@@ -141,85 +137,67 @@ cardapio.metodos = {
 
     // abrir a modal de carrinho
     abrirCarrinho: (abrir) => {
-
+        const modalCarrinho = $('#modalCarrinho');
         if (abrir) {
-            $('#modalCarrinho').removeClass('hidden');
+            modalCarrinho.removeClass('hidden');
             cardapio.metodos.carregarCarrinho();
         } else {
-            $('#modalCarrinho').addClass('hidden')
+            modalCarrinho.addClass('hidden');
         }
-
     },
-
-    // altera os textos e exibe os botões das etapas
+    
     carregarEtapa: (etapa) => {
-
-        if (etapa == 1) {
-            $("#lblTituloEtapa").text('Seu carrinho:');
-            $("#itensCarrinho").removeClass('hidden');
-            $("#localEntrega").addClass('hidden');
-            $("#resumoCarrinho").addClass('hidden');
-
+        const lblTituloEtapa = $("#lblTituloEtapa");
+        const itensCarrinho = $("#itensCarrinho");
+        const localEntrega = $("#localEntrega");
+        const resumoCarrinho = $("#resumoCarrinho");
+        const pagamento = $("#pagamento");
+        const botaoVoltar = $("#btnVoltar");
+    
+        // Função auxiliar para esconder todos os conteúdos e botões
+        const esconderTodos = () => {
+            itensCarrinho.addClass('hidden');
+            localEntrega.addClass('hidden');
+            resumoCarrinho.addClass('hidden');
+            pagamento.addClass('hidden');
             $(".etapa").removeClass('active');
+            $("#btnEtapaPedido, #btnEtapaEndereco, #btnEtapaResumo, #btnEtapaPagamento").addClass('hidden');
+        };
+    
+        esconderTodos(); // Esconde todos inicialmente
+    
+        if (etapa === 1) {
+            lblTituloEtapa.text('Seu carrinho:');
+            itensCarrinho.removeClass('hidden');
             $(".etapa1").addClass('active');
-
             $("#btnEtapaPedido").removeClass('hidden');
-            $("#btnEtapaEndereco").addClass('hidden');
-            $("#btnEtapaResumo").addClass('hidden');
-            $("#btnVoltar").addClass('hidden');
-        }
-        if (etapa == 2) {
-            $("#lblTituloEtapa").text('Endereço de entrega:');
-            $("#itensCarrinho").addClass('hidden');
-            $("#localEntrega").removeClass('hidden');
-            $("#resumoCarrinho").addClass('hidden');
-
-            $(".etapa").removeClass('active');
-            $(".etapa1").addClass('active');
-            $(".etapa2").addClass('active');
-
-            $("#btnEtapaPedido").addClass('hidden');
+            botaoVoltar.addClass('hidden');
+        } 
+        else if (etapa === 2) {
+            lblTituloEtapa.text('Endereço de entrega:');
+            localEntrega.removeClass('hidden');
+            $(".etapa1, .etapa2").addClass('active');
             $("#btnEtapaEndereco").removeClass('hidden');
-            $("#btnEtapaResumo").addClass('hidden');
-            $("#btnVoltar").removeClass('hidden');
-        }
-        if (etapa == 3) {
-            $("#lblTituloEtapa").text('Resumo do pedido:');
-            $("#itensCarrinho").addClass('hidden');
-            $("#localEntrega").addClass('hidden');
-            $("#resumoCarrinho").removeClass('hidden');
-
-            $(".etapa").removeClass('active');
-            $(".etapa1").addClass('active');
-            $(".etapa2").addClass('active');
-            $(".etapa3").addClass('active');
-
-            $("#btnEtapaPedido").addClass('hidden');
-            $("#btnEtapaEndereco").addClass('hidden');
+            botaoVoltar.removeClass('hidden');
+        } 
+        else if (etapa === 3) {
+            lblTituloEtapa.text('Resumo do pedido:');
+            resumoCarrinho.removeClass('hidden');
+            $(".etapa1, .etapa2, .etapa3").addClass('active');
             $("#btnEtapaResumo").removeClass('hidden');
-            $("#btnVoltar").removeClass('hidden');
-        }
-        if (etapa == 4) {
-            $("#lblTituloEtapa").text('Realizar pagamento:');
-            $("#itensCarrinho").addClass('hidden');
-            $("#localEntrega").addClass('hidden');
-            $("#resumoCarrinho").addClass('hidden');
-            $("#pagamento").removeClass('hidden'); // Mostra a etapa de pagamento
-
-            $(".etapa").removeClass('active');
-            $(".etapa1").addClass('active');
-            $(".etapa2").addClass('active');
-            $(".etapa3").addClass('active');
-            $(".etapa4").addClass('active');
-
-            $("#btnEtapaPedido").addClass('hidden');
-            $("#btnEtapaEndereco").addClass('hidden');
-            $("#btnEtapaResumo").addClass('hidden');
+            botaoVoltar.removeClass('hidden');
+        } 
+        else if (etapa === 4) {
+            lblTituloEtapa.text('Realizar pagamento:');
+            pagamento.removeClass('hidden');
+            $(".etapa1, .etapa2, .etapa3, .etapa4").addClass('active');
             $("#btnEtapaPagamento").removeClass('hidden');
-            $("#btnVoltar").removeClass('hidden');
+            botaoVoltar.removeClass('hidden');
         }
-
     },
+
+    
+    
 
     // botão de voltar etapa
     voltarEtapa: () => {
@@ -530,9 +508,9 @@ carregarPagamento: () => {
     // Após confirmação, habilita o botão para enviar pedido
     $("#btnEtapaPagamento").addClass('hidden');
     $("#btnEtapaResumo").removeClass('hidden');
+
+
 }
-
-
 cardapio.metodos.carregarPagamento = function() {
     // Aqui você pode definir a chave PIX e gerar o QR Code, se necessário
     document.getElementById("chavePix").innerText = "54306417824"; 
@@ -544,10 +522,27 @@ cardapio.metodos.carregarPagamento = function() {
     abrirModalPagamento();
 };
 
-function abrirModalPagamento() {
-    document.getElementById("modalPagamento").classList.remove("hidden");
-    // Se você quiser fazer mais ações, como carregar o QR Code, faça aqui
-}
+document.addEventListener("DOMContentLoaded", function() {
+    // Garantir que o modal é carregado após o DOM estar pronto
+    function abrirModalPagamento() {
+        const modal = document.getElementById("modalPagamento");
+        if (modal) {
+            modal.classList.remove("hidden");
+        } else {
+            console.error("Modal de pagamento não encontrado!");
+        }
+    }
+
+    // Conectar o evento ao botão
+    const pagamentoButton = document.querySelector('.btn-yellow');
+    if (pagamentoButton) {
+        pagamentoButton.onclick = function() {
+            cardapio.metodos.carregarPagamento();
+        };
+    }
+});
+
+
 
 function fecharModalPagamento() {
     document.getElementById("modalPagamento").classList.add("hidden");
@@ -606,10 +601,12 @@ function gerarCRC16(payload) {
     return (resultado & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
 }
 
+
 function avancarParaProximaEtapa() {
     fecharModalPagamento();
     cardapio.metodos.carregarEndereco(2);
 }
+
 
 
 

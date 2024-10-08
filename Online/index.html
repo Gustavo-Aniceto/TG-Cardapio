@@ -389,7 +389,7 @@
                             </p>
                             <p class="cidade-endereco" id="cidadendereco">
                             </p>
-                            <a onclick="cardapio.metodos.carregarPagamento()" class="btn btn-yellow">Realizar Pagamento</a>
+                            <a onclick="cardapio.metodos.abrirModalPagamento()" class="btn btn-yellow">Realizar Pagamento</a>
                         </div>
                     </div>
                 </div>
@@ -397,7 +397,8 @@
         </div>
 
 
-        <div class="modal-full animated fadeIn hidden" id="modalPagamento">
+        <div id="modalPagamento" class="modal-full animated fadeIn hidden">
+
             <div class="m-header">
                 <h4>Informações de Pagamento</h4>
                 
