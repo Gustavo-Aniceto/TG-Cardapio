@@ -595,32 +595,14 @@ cardapio.templates = {
     `
 }
 
-function gerarPagamentoPix(VALOR_TOTAL) {
-    const chavePix = "54306417824";
-    const cidade = "Sao Paulo";
-    const nome = "Restaurante";
 
-    // Construa o payload Pix com os dados
-    const payloadPix = `00020126330014BR.GOV.BCB.PIX0111${chavePix}5204000053039865405${valorTotal.toFixed(2)}5802BR5912${nome}6009${cidade}62070503***6304`;
 
-    // Renderiza o QR Code
-    QRCode.toCanvas(document.getElementById('canvasQRCode'), payloadPix, function (error) {
-        if (error) console.error(error);
+function gerarQRCode() {
+    const qr = new QRious({
+        element: document.getElementById('qrCanvas'),
+        value: `00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e735204000053039865802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512`,
+        size: 250 // Tamanho do QR Code
     });
-
-    // Exibe o código Pix para "copia e cola"
-    document.getElementById('codigoPix').value = payloadPix;
-
-    // Abre o modal
-    const modal = new bootstrap.Modal(document.getElementById('meuModalPagamento'));
-    modal.show();
-
-    const qrcode = new QRCode(document.getElementById("qrcode"), {
-        text: "Texto ou URL",
-        width: 128,
-        height: 128,
-      });
-      
 }
 function copiarCodigoPix() {
     const codigoPix = document.getElementById("codigoPix").value;
