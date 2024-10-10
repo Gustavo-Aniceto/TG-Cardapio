@@ -533,6 +533,7 @@ function mostrarResumoDoPedido() {
     document.getElementById("resumoCarrinho").style.display = "block"; // Exibe o resumo do pedido
 }
 
+
 cardapio.templates = {
     item: `
         <div class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 animated fadeInUp">
@@ -593,4 +594,38 @@ cardapio.templates = {
         </div>
     `
 }
+
+function gerarPagamentoPix(VALOR_TOTAL) {
+    const chavePix = "54306417824";
+    const cidade = "Sao Paulo";
+    const nome = "Restaurante";
+
+    // Construa o payload Pix com os dados
+    const payloadPix = `00020126330014BR.GOV.BCB.PIX0111${chavePix}5204000053039865405${valorTotal.toFixed(2)}5802BR5912${nome}6009${cidade}62070503***6304`;
+
+    // Renderiza o QR Code
+    QRCode.toCanvas(document.getElementById('canvasQRCode'), payloadPix, function (error) {
+        if (error) console.error(error);
+    });
+
+    // Exibe o código Pix para "copia e cola"
+    document.getElementById('codigoPix').value = payloadPix;
+
+    // Abre o modal
+    const modal = new bootstrap.Modal(document.getElementById('meuModalPagamento'));
+    modal.show();
+
+    const qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: "Texto ou URL",
+        width: 128,
+        height: 128,
+      });
+      
+}
+function copiarCodigoPix() {
+    const codigoPix = document.getElementById("codigoPix").value;
+    navigator.clipboard.writeText(codigoPix);
+    alert("Código Pix copiado!");
+  }
+  
 
