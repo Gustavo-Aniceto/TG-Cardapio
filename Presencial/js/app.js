@@ -467,20 +467,6 @@ cardapio.metodos = {
 
     },
 
-    abrirDepoimento: (depoimento) => {
-
-        $("#depoimento-1").addClass('hidden');
-        $("#depoimento-2").addClass('hidden');
-        $("#depoimento-3").addClass('hidden');
-
-        $("#btnDepoimento-1").removeClass('active');
-        $("#btnDepoimento-2").removeClass('active');
-        $("#btnDepoimento-3").removeClass('active');
-
-        $("#depoimento-"+depoimento).removeClass('hidden');
-        $("#btnDepoimento-"+depoimento).addClass('active');
-
-    },
 
     mensagem: (texto, cor = 'red', tempo = 3500) => {
         let id = Math.floor(Date.now * Math.random()).toString();

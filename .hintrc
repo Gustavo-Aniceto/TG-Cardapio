@@ -13,7 +13,8 @@
     "axe/text-alternatives": [
       "default",
       {
-        "image-alt": "off"
+        "image-alt": "off",
+        "frame-title": "off"
       }
     ],
     "axe/forms": [
@@ -31,6 +32,9 @@
           "iframe[referrerpolicy=no-referrer-when-downgrade]"
         ]
       }
-    ]
+    ],
+    "button-type": "off",
+    "no-inline-styles": "off",
+    "disown-opener": "off"
   }
 }

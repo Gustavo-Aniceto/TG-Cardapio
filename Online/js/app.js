@@ -10,7 +10,7 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 10;
 
-var VALOR_TOTAL = VALOR_CARRINHO + VALOR_ENTREGA;
+const VALOR_TOTAL = 50.00; // Exemplo de valor total em reais
 
 
 CELULAR_EMPRESA = '5511958705804';
@@ -144,7 +144,7 @@ cardapio.metodos = {
             modalCarrinho.addClass('hidden');
         }
     },
-    
+
     carregarEtapa: (etapa) => {
         const lblTituloEtapa = $("#lblTituloEtapa");
         const itensCarrinho = $("#itensCarrinho");
@@ -152,7 +152,7 @@ cardapio.metodos = {
         const resumoCarrinho = $("#resumoCarrinho");
         const pagamento = $("#pagamento");
         const botaoVoltar = $("#btnVoltar");
-    
+
         // Função auxiliar para esconder todos os conteúdos e botões
         const esconderTodos = () => {
             itensCarrinho.addClass('hidden');
@@ -162,30 +162,30 @@ cardapio.metodos = {
             $(".etapa").removeClass('active');
             $("#btnEtapaPedido, #btnEtapaEndereco, #btnEtapaResumo, #btnEtapaPagamento").addClass('hidden');
         };
-    
+
         esconderTodos(); // Esconde todos inicialmente
-    
+
         if (etapa === 1) {
             lblTituloEtapa.text('Seu carrinho:');
             itensCarrinho.removeClass('hidden');
             $(".etapa1").addClass('active');
             $("#btnEtapaPedido").removeClass('hidden');
             botaoVoltar.addClass('hidden');
-        } 
+        }
         else if (etapa === 2) {
             lblTituloEtapa.text('Endereço de entrega:');
             localEntrega.removeClass('hidden');
             $(".etapa1, .etapa2").addClass('active');
             $("#btnEtapaEndereco").removeClass('hidden');
             botaoVoltar.removeClass('hidden');
-        } 
+        }
         else if (etapa === 3) {
             lblTituloEtapa.text('Resumo do pedido:');
             resumoCarrinho.removeClass('hidden');
             $(".etapa1, .etapa2, .etapa3").addClass('active');
             $("#btnEtapaResumo").removeClass('hidden');
             botaoVoltar.removeClass('hidden');
-        } 
+        }
         else if (etapa === 4) {
             lblTituloEtapa.text('Realizar pagamento:');
             pagamento.removeClass('hidden');
@@ -195,8 +195,8 @@ cardapio.metodos = {
         }
     },
 
-    
-    
+
+
 
     // botão de voltar etapa
     voltarEtapa: () => {
@@ -453,26 +453,35 @@ cardapio.metodos = {
         }
 
     },
-
-    // carrega o link do botão reserva
-    carregarBotaoReserva: () => {
-
-        var texto = 'Olá! gostaria de fazer uma *reserva*';
-
-        let encode = encodeURI(texto);
-        let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
-
-        $("#btnReserva").attr('href', URL);
-    },
-
-    //
     carregarBotaoLigar: () => {
 
         $("#btnLigar").attr('href', `tel:${CELULAR_EMPRESA}`);
-
     },
 
 
+
+
+    carregarBotaoReserva:() => {
+    
+        const nome = $('#nome').val();
+        const data = $('#data').val();
+        const hora = $('#hora').val();
+        const pessoas = $('#pessoas').val();
+    
+        let texto = `Olá! Gostaria de fazer uma *reserva*.
+        Nome: ${nome}
+        Data: ${data}
+        Hora: ${hora}
+        Número de Pessoas: ${pessoas}`;
+    
+        let encode = encodeURIComponent(texto); // Troque para encodeURIComponent
+        let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
+    
+        window.open(URL, '_blank'); // Abre o link em uma nova aba para WhatsApp
+    }
+}
+
+    // Função para exibir mensagens
     mensagem: (texto, cor = 'red', tempo = 3500) => {
         let id = Math.floor(Date.now * Math.random()).toString();
 
@@ -487,8 +496,28 @@ cardapio.metodos = {
                 $("#msg-" + id).remove();
             }, 800)
         }, tempo)
+    };
+
+
+
+
+
+
+
+
+function validarReserva() {
+    const data = new Date(document.getElementById('data').value);
+    const hoje = new Date();
+
+    // Verifica se a data é válida e não é anterior ao dia de hoje
+    if (data < hoje) {
+        alert('Por favor, escolha uma data futura.');
+        return false; // Impede o envio do formulário
     }
+    return true; // Permite o envio do formulário
 }
+
+
 atualizarCarrinho: (id, qntd) => {
     // atualiza o carrinho
     let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
@@ -501,8 +530,8 @@ atualizarCarrinho: (id, qntd) => {
     cardapio.metodos.atualizarBadgeTotal();
     cardapio.metodos.carregarValores();
 }
-  // Função para abrir o modal
-  function meuModalPagamento() {
+// Função para abrir o modal
+function meuModalPagamento() {
     // Seleciona o modal
     var meuModal = new bootstrap.Modal(document.getElementById('meuModalPagamento'), {
         keyboard: false // Impede que o modal feche com a tecla Esc
@@ -513,12 +542,12 @@ atualizarCarrinho: (id, qntd) => {
 }
 
 // Adiciona o evento de clique ao botão
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('botaoAbrirModal').addEventListener('click', meuModalPagamento);
 });
 
 
-document.getElementById("btnFecharModal").addEventListener("click", function() {
+document.getElementById("btnFecharModal").addEventListener("click", function () {
     // Ocultar o modal
     var modal = bootstrap.Modal.getInstance(document.getElementById('meuModalPagamento'));
     modal.hide();
@@ -527,10 +556,7 @@ document.getElementById("btnFecharModal").addEventListener("click", function() {
     mostrarResumoDoPedido();
 });
 
-function mostrarResumoDoPedido() {
-   
-    document.getElementById("resumoCarrinho").style.display = "block"; // Exibe o resumo do pedido
-}
+
 
 
 cardapio.templates = {
@@ -597,13 +623,21 @@ cardapio.templates = {
 
 
 function gerarQRCode() {
-    const VALOR_TOTAL = document.getElementById("valorTotal").value; // Obtendo o valor total
 
-    const qr = new QRious({
-        element: document.getElementById('qrCanvas'),
-        value: `00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e735204000053039865802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512`,
-        size: 250 // Tamanho do QR Code
+    // Formatar o valor para centavos
+    const valorCentavos = (VALOR_TOTAL * 100).toFixed(0);
+
+
+    // Monta a string Pix com o valor dinâmico
+    const pixCode = `00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e7352040000${String(VALOR_TOTAL).padStart(10, '0')}5802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512`;
+
+    // Gera o QR Code com a string Pix montada
+    new QRCode(document.getElementById("qrcode"), {
+        text: pixCode,
+        width: 256,
+        height: 256
     });
+    document.getElementById("pixCode").value = pixCod
 }
 
 
@@ -612,6 +646,6 @@ function copiarCodigoPix() {
     const codigoPix = document.getElementById("codigoPix").value;
     navigator.clipboard.writeText(codigoPix);
     alert("Código Pix copiado!");
-  }
-  
+}
+
 

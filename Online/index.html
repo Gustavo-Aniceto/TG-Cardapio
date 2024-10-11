@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>G&O Restaurante</title>
+    <link rel="icon" type="img-logo" href="/Online/img/logo.png">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/fontawesome.css">
     <link rel="stylesheet" href="./css/animate.css">
@@ -61,10 +62,11 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 col-one">
                     <div class="d-flex text-banner">
-                        <h1 class="wow fadeInLeft"><b>G&O <b class="color-primary">Restaurante</b></b></h1>
-                        <p class="wow fadeInLeft delay-02s">Trabalho Realizado por Gustavo e Otavio.</p>
+                        <h1 class="wow fadeInLeft"><b>G & O <b class="color-primary">Restaurante</b></b></h1>
+                        <p class="wow fadeInLeft delay-02s">Trabalho de graduação Realizado por Gustavo Aniceto e Otavio Barreiro, supervisionado pelo professor Marcos Assis.</p>
                         <div class="wow fadeIn delay-05s">
-                            <a class="btn btn-yellow mt-4 mr-3">
+
+                            <a class="btn btn-yellow mt-4 mr-3"  href="#cardapio">
                                 Ver cardápio
                             </a>
                             <a href="#" class="btn btn-white btn-icon-left mt-4" id="btnLigar">
@@ -75,14 +77,12 @@
                             </a>
                         </div>
                     </div>
-                    <a class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s">
+                    <a class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s" href="https:/www.instagram.com/fatec_guarulhos/" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s">
+                    <a class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s" href="https://www.facebook.com/ftcguarulhos/" target="_blank">
                         <i class="fab fa-facebook"></i>
                     </a>
-                    <a class="btn btn-sm btn-white btn-social mt-4 wow fadeIn delay-05s">
-                        <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
                 <div class="col-6 no-mobile">
@@ -206,26 +206,33 @@
                     <div class="card-secondary wow fadeInUp">
                         <div class="row">
                             <div class="col-12 col-lg-7 col-md-7 col-sm-12">
-                                <span class="hint-title">
-                                    <b>Reservas</b>
-                                </span>
-                                <h1 class="title">
-                                    <b>Quer reservar um horário?</b>
-                                </h1>
+                                <span class="hint-title"><b>Reservas</b></span>
+                                <h1 class="title"><b>Quer reservar um horário?</b></h1>
                                 <p class="pr-5">
                                     Mande uma mensagem clicando no botão abaixo
                                     <br>
                                     Reserve sua data e horário de forma simples e rápida
                                 </p>
-                                <a class="btn btn-yellow mt-4 wow fadeIn delay-05s" href="#" id="btnReserva"
-                                    target="_blank">
-                                    Fazer reserva
-                                </a>
+                                <form id="formReserva" class="mt-4" onsubmit="return validarReserva();">
+                                    <label for="nome">Seu Nome</label>
+                                    <input type="text" id="nome" name="nome" placeholder="Seu Nome" required aria-label="Seu Nome">
+                                    
+                                    <label for="data">Data</label>
+                                    <input type="date" id="data" name="data" required aria-label="Data" min="<?= date('Y-m-d') ?>">
+    
+                                    <label for="hora">Hora</label>
+                                    <input type="time" id="hora" name="hora" required aria-label="Hora">
+    
+                                    <label for="pessoas">Número de Pessoas</label>
+                                    <input type="number" id="pessoas" name="pessoas" placeholder="Número de Pessoas" required aria-label="Número de Pessoas" min="1">
+    
+                                    <button type="submit" class="btnReserva">Reservar</button>
+                                </form>
                             </div>
                             <div class="col-5 no-mobile">
                                 <div class="card-reserva"></div>
                                 <div class="d-flex img-banner">
-                                    <img src="./img/icone-reserva.svg">
+                                    <img src="./img/icone-reserva.svg" alt="Ícone de Reserva">
                                 </div>
                             </div>
                         </div>
@@ -234,7 +241,8 @@
             </div>
         </div>
     </section>
-
+    
+    
     <footer style="background-color: #FFF3E0; padding: 20px;">
         <div
             style="display: flex; justify-content: center; align-items: center; flex-direction: column; max-width: 1200px; margin: auto; text-align: center;">
@@ -246,17 +254,15 @@
             <!-- Coluna 2: Redes Sociais e Texto -->
             <div style="margin-bottom: 10px;">
                 <div style="display: flex; justify-content: center; gap: 10px;">
-                    <a href="#" class="btn btn-sm btn-white btn-social mr-3">
+                    <a class="btn btn-sm btn-white btn-social mr-3" href="https://www.instagram.com/fatec_guarulhos/" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="btn btn-sm btn-white btn-social mr-3">
+                    <a class="btn btn-sm btn-white btn-social mr-3" href="https://www.facebook.com/ftcguarulhos/" target="_blank">
                         <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" class="btn btn-sm btn-white btn-social">
-                        <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
             </div>
+            
 
             <!-- Coluna 3: Mapa -->
             <div style="margin-bottom: 10px;">
@@ -397,8 +403,7 @@
                                 </p>
                                 <p class="cidade-endereco" id="cidadendereco">
                                 </p>
-                                <button id="botaoAbrirModal" type="button" class="btn btn-yellow btn-sm"
-                                    onclick="gerarPagamentoPix(VALOR_TOTAL)">
+                                <button id="botaoAbrirModal" type="button" class="btn btn-yellow btn-sm">
                                     Realizar Pagamento
                                 </button>
 
@@ -413,12 +418,12 @@
                 <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="meuModalLabel">Pagamento</h5>
+                            <h5 class="modal-title" id="meuModalLabel">Pagamento via Pix</h5>
                         </div>
                         <div>
                             <canvas id="qrCanvas"></canvas>
-                            <p>Pague e será creditado na hora</p>
-                            <p>Ou copie este código para fazer o pagamento</p>
+                            <p>Escanei esse QrCode para realizar o pagamento</p>
+                            <p>Copie este código para fazer o pagamento</p>
                             <input type="text" id="codigoPix"
                                 value="00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e735204000053039865802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512">
                             <button onclick="copiarCodigoPix()" class="botao-branco">Copiar código</button>
@@ -426,7 +431,8 @@
                         </div>
                         <div class="modal-footer">
 
-                            <button type="button" class="btn btn-white float-right mr-3 hidden" id="btnFecharModal" data-bs-dismiss="modal">Voltar</button>
+                            <button type="button" class="btn btn-white float-right mr-3 hidden" id="btnFecharModal"
+                                data-bs-dismiss="modal">Voltar</button>
                             <a href="#" target="_blank" class="btn btn-yellow float-right hidden"
                                 id="btnEtapaResumo">Enviar pedido</a>
                         </div>
@@ -463,7 +469,7 @@
                 </div>
             </div>
         </div>
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
         <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
