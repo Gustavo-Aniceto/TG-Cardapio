@@ -397,7 +397,8 @@
                                 </p>
                                 <p class="cidade-endereco" id="cidadendereco">
                                 </p>
-                                <button id="botaoAbrirModal" type="button" class="btn btn-primary" onclick="gerarPagamentoPix(VALOR_TOTAL)">
+                                <button id="botaoAbrirModal" type="button" class="btn btn-yellow btn-sm"
+                                    onclick="gerarPagamentoPix(VALOR_TOTAL)">
                                     Realizar Pagamento
                                 </button>
 
@@ -407,24 +408,27 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="meuModalPagamento" tabindex="-1" aria-labelledby="meuModalLabel" aria-hidden="true">
+            <div class="modal fade" id="meuModalPagamento" tabindex="-1" aria-labelledby="meuModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-fullscreen">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="meuModalLabel">Pagamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div>
                             <canvas id="qrCanvas"></canvas>
                             <p>Pague e será creditado na hora</p>
                             <p>Ou copie este código para fazer o pagamento</p>
-                            <input type="text" id="codigoPix" value="00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e735204000053039865802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512">
-                            <button onclick="copiarCodigoPix()">Copiar código</button>
-                            <button onclick="gerarQRCode()">Gerar QR Code</button>
-                          </div>
+                            <input type="text" id="codigoPix"
+                                value="00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e735204000053039865802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512">
+                            <button onclick="copiarCodigoPix()" class="botao-branco">Copiar código</button>
+                            <button onclick="gerarQRCode()" class="btn btn-secondary">Gerar QR Code</button>
+                        </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="btnFecharModal" data-bs-dismiss="modal">Fechar</button>
-                            <a href="#" target="_blank" class="btn btn-yellow float-right hidden" id="btnEtapaResumo">Enviar pedido</a>
+
+                            <button type="button" class="btn btn-white float-right mr-3 hidden" id="btnFecharModal" data-bs-dismiss="modal">Voltar</button>
+                            <a href="#" target="_blank" class="btn btn-yellow float-right hidden"
+                                id="btnEtapaResumo">Enviar pedido</a>
                         </div>
                     </div>
                 </div>
