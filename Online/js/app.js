@@ -10,7 +10,7 @@ var MEU_ENDERECO = null;
 var VALOR_CARRINHO = 0;
 var VALOR_ENTREGA = 10;
 
-const VALOR_TOTAL = 50.00; // Exemplo de valor total em reais
+const VALOR_TOTAL = 0; // Exemplo de valor total em reais
 
 
 CELULAR_EMPRESA = '5511958705804';
@@ -18,8 +18,7 @@ CELULAR_EMPRESA = '5511958705804';
 cardapio.eventos = {
     init: () => {
         cardapio.metodos.obterItensCardapio();
-        cardapio.metodos.carregarBotaoLigar();
-        cardapio.metodos.carregarBotaoReserva();
+
     }
 }
 
@@ -83,38 +82,39 @@ cardapio.metodos = {
     // Adicionar ao carrinho o item do cardápio
     adicionarAoCarrinho: (id) => {
         let qntdAtual = parseInt($('#qntd-' + id).text());
-
+    
         if (qntdAtual > 0) {
-            // obter a categoria ativa
+            // Obter a categoria ativa
             var categoria = $(".container-menu a.active").attr('id').split('menu-')[1];
-
-            // obtem a lista de itens
+            
+            // Obter a lista de itens da categoria
             let filtro = MENU[categoria];
-
-            // obtem o item / O grep é parecido com o each, só que ele retorna o objeto inteiro
-            let item = $.grep(filtro, (e, i) => { return e.id == id })
-
+    
+            // Encontrar o item correspondente ao id
+            let item = $.grep(filtro, (e, i) => { return e.id == id });
+    
             if (item.length > 0) {
-
-                // Validar se existem item no carrinho
-                let existe = $.grep(MEU_CARRINHO, (elem, index) => { return elem.id == id })
-
-                // Caso ja exista o item no carrinho, só altera a quantidade
+                // Verificar se o item já existe no carrinho
+                let existe = $.grep(MEU_CARRINHO, (elem, index) => { return elem.id == id });
+    
+                // Caso já exista o item no carrinho, apenas altera a quantidade
                 if (existe.length > 0) {
                     let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
-                    MEU_CARRINHO[objIndex].qntd = MEU_CARRINHO[objIndex].qntd + qntdAtual;
-                } else { // Caso não exista o item no carrinho, adiciona ele
+                    MEU_CARRINHO[objIndex].qntd += qntdAtual;
+                } else {
+                    // Caso não exista o item no carrinho, adiciona-o
                     item[0].qntd = qntdAtual;
-                    MEU_CARRINHO.push(item[0])
+                    MEU_CARRINHO.push(item[0]);
                 }
             }
         }
-
+    
         cardapio.metodos.mensagem('Item adicionado ao carrinho', 'green');
         $('#qntd-' + id).text(0);
-
         cardapio.metodos.atualizarBadgeTotal();
     },
+    
+
 
     atualizarBadgeTotal: () => {
         var total = 0;
@@ -452,69 +452,43 @@ cardapio.metodos = {
             })
         }
 
-    },
-    carregarBotaoLigar: () => {
-
-        $("#btnLigar").attr('href', `tel:${CELULAR_EMPRESA}`);
-    },
-
-
-
-
-    carregarBotaoReserva:() => {
-    
-        const nome = $('#nome').val();
-        const data = $('#data').val();
-        const hora = $('#hora').val();
-        const pessoas = $('#pessoas').val();
-    
-        let texto = `Olá! Gostaria de fazer uma *reserva*.
-        Nome: ${nome}
-        Data: ${data}
-        Hora: ${hora}
-        Número de Pessoas: ${pessoas}`;
-    
-        let encode = encodeURIComponent(texto); // Troque para encodeURIComponent
-        let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
-    
-        window.open(URL, '_blank'); // Abre o link em uma nova aba para WhatsApp
-    }
-}
-
-    // Função para exibir mensagens
-    mensagem: (texto, cor = 'red', tempo = 3500) => {
-        let id = Math.floor(Date.now * Math.random()).toString();
-
-        let msg = `<div id="msg-${id}" clas="animated fadeInDown toast ${cor}">${texto}</div>`;
-
-        $('#container-mensagens').append(msg);
-
-        setTimeout(() => {
-            $("#msg-" + id).removeClass('fadeInDown');
-            $("#msg-" + id).addClass('fadeOutUp');
+        mensagem : (texto, cor = 'red', tempo = 3500) => {
+            let id = Math.floor(Date.now() * Math.random()).toString();
+        
+            // Corrigido o atributo "class" e adicionado aspas ao seletor
+            let msg = `<div id="msg-${id}" class="animated fadeInDown toast ${cor}">${texto}</div>`;
+            
+            $('#container-mensagens').append(msg);
+        
             setTimeout(() => {
-                $("#msg-" + id).remove();
-            }, 800)
-        }, tempo)
-    };
-
-
-
-
-
-
-
-
-function validarReserva() {
-    const data = new Date(document.getElementById('data').value);
-    const hoje = new Date();
-
-    // Verifica se a data é válida e não é anterior ao dia de hoje
-    if (data < hoje) {
-        alert('Por favor, escolha uma data futura.');
-        return false; // Impede o envio do formulário
+                $("#msg-" + id).removeClass('fadeInDown');
+                $("#msg-" + id).addClass('fadeOutUp');
+                
+                setTimeout(() => {
+                    $("#msg-" + id).remove();
+                }, 800);
+            }, tempo);
+        }
+        
     }
-    return true; // Permite o envio do formulário
+    
+}
+mensagem: (texto, cor = 'red', tempo = 3500) => {
+    let id = Math.floor(Date.now() * Math.random()).toString();
+
+    // Criação da mensagem com animação
+    let msg = `<div id="msg-${id}" class="animated fadeInDown toast ${cor}">${texto}</div>`;
+    
+    $('#container-mensagens').append(msg);
+
+    setTimeout(() => {
+        $("#msg-" + id).removeClass('fadeInDown');
+        $("#msg-" + id).addClass('fadeOutUp');
+        
+        setTimeout(() => {
+            $("#msg-" + id).remove();
+        }, 800);
+    }, tempo);
 }
 
 
@@ -545,17 +519,6 @@ function meuModalPagamento() {
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('botaoAbrirModal').addEventListener('click', meuModalPagamento);
 });
-
-
-document.getElementById("btnFecharModal").addEventListener("click", function () {
-    // Ocultar o modal
-    var modal = bootstrap.Modal.getInstance(document.getElementById('meuModalPagamento'));
-    modal.hide();
-
-    // Exibir a seção de resumo do pedido
-    mostrarResumoDoPedido();
-});
-
 
 
 
@@ -637,7 +600,6 @@ function gerarQRCode() {
         width: 256,
         height: 256
     });
-    document.getElementById("pixCode").value = pixCod
 }
 
 
@@ -648,4 +610,45 @@ function copiarCodigoPix() {
     alert("Código Pix copiado!");
 }
 
+function carregarBotaoLigar() {
+    const nome = $('#nome').val();
+    const data = $('#data').val();
+    const hora = $('#hora').val();
+    const pessoas = $('#pessoas').val();
 
+    // Verificar se todos os campos foram preenchidos
+    if (!nome || !data || !hora || !pessoas) {
+        mensagem("Por favor, preencha todos os campos!", "red");
+        return;
+    }
+
+    let texto = `Olá! Gostaria de fazer uma *reserva*.\nNome: ${nome}\nData: ${data}\nHora: ${hora}\nNúmero de Pessoas: ${pessoas}`;
+    let encode = encodeURIComponent(texto);
+    let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
+
+    window.open(URL, '_blank');
+}
+
+function validarReserva() {
+    const data = new Date(document.getElementById('data').value);
+    const hoje = new Date();
+
+    // Verifica se a data é válida e não é anterior ao dia de hoje
+    if (data < hoje) {
+        alert('Por favor, escolha uma data futura.');
+        return false; // Impede o envio do formulário
+    }
+    return true; // Permite o envio do formulário
+}
+atualizarCarrinho: (id, qntd) => {
+    // atualiza o carrinho
+    let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
+    MEU_CARRINHO[objIndex].qntd = qntd;
+
+    // salva o carrinho no localStorage
+    localStorage.setItem('carrinho', JSON.stringify(MEU_CARRINHO));
+
+    // atualização de outros elementos
+    cardapio.metodos.atualizarBadgeTotal();
+    cardapio.metodos.carregarValores();
+}

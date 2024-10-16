@@ -69,12 +69,7 @@
                             <a class="btn btn-yellow mt-4 mr-3"  href="#cardapio">
                                 Ver cardápio
                             </a>
-                            <a href="#" class="btn btn-white btn-icon-left mt-4" id="btnLigar">
-                                <span class="icon-left">
-                                    <i class="fa fa-phone"></i>
-                                </span>
-                                (11) 95870-5804
-                            </a>
+                           
                         </div>
                     </div>
                     <a class="btn btn-sm btn-white btn-social mt-4 mr-3 wow fadeIn delay-05s" href="https:/www.instagram.com/fatec_guarulhos/" target="_blank">
@@ -213,21 +208,23 @@
                                     <br>
                                     Reserve sua data e horário de forma simples e rápida
                                 </p>
-                                <form id="formReserva" class="mt-4" onsubmit="return validarReserva();">
+                                <form id="formReserva" class="mt-4" onsubmit="carregarBotaoLigar(); return false;">
                                     <label for="nome">Seu Nome</label>
                                     <input type="text" id="nome" name="nome" placeholder="Seu Nome" required aria-label="Seu Nome">
-                                    
+                                
                                     <label for="data">Data</label>
                                     <input type="date" id="data" name="data" required aria-label="Data" min="<?= date('Y-m-d') ?>">
-    
+                                
                                     <label for="hora">Hora</label>
                                     <input type="time" id="hora" name="hora" required aria-label="Hora">
-    
+                                
                                     <label for="pessoas">Número de Pessoas</label>
                                     <input type="number" id="pessoas" name="pessoas" placeholder="Número de Pessoas" required aria-label="Número de Pessoas" min="1">
-    
+                                
                                     <button type="submit" class="btnReserva">Reservar</button>
                                 </form>
+                                
+             
                             </div>
                             <div class="col-5 no-mobile">
                                 <div class="card-reserva"></div>
@@ -427,7 +424,7 @@
                             <input type="text" id="codigoPix"
                                 value="00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e735204000053039865802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512">
                             <button onclick="copiarCodigoPix()" class="botao-branco">Copiar código</button>
-                            <button onclick="gerarQRCode()" class="btn btn-secondary">Gerar QR Code</button>
+                            <button onclick="gerarQRCode()" id="qrcode" class="btn btn-secondary">Gerar QR Code</button>
                         </div>
                         <div class="modal-footer">
 
