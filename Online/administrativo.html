@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Administrativa</title>
+    <link rel="icon" type="image/png" href="/Online/img/logo.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/Online/css/administrativo.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Botão de Alternância do Menu Lateral para Dispositivos Móveis -->
+        <button id="toggle-sidebar" class="btn-yellow">☰ Menu</button>
+
+        <!-- Menu Lateral -->
+        <nav class="sidebar" id="sidebar">
+            <h2>ADMINISTRAÇÃO</h2>
+            <ul>
+                <li><a href="#produtos" class="btn-yellow" id="produtos-link">Produtos</a></li>
+                <li><a href="#sair" class="btn-yellow" id="sair-btn">Sair</a></li>
+            </ul>
+        </nav>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content" id="main-content">
+            <h1>Bem-vindo à Área Administrativa</h1>
+            <p>Utilize o menu à esquerda para navegar pelas seções administrativas.</p>
+        </main>
+
+
+        <!-- Modal de Produtos -->
+        <div id="modal-produto" class="modal-container" style="display: none;">
+            <div class="modal">
+                <span class="btn-close" aria-label="Fechar Modal">X</span>
+                <div id="modal-content-produto" class="modal-content">
+                    <!-- Conteúdo do modal para produtos será inserido aqui -->
+                </div>
+            </div>
+        </div>
+
+
+    <!-- Scripts -->
+    <script type="module" src="/cardapio-online-main/public/js/modules/modals/modalUtils.js"></script>
+    <script type="module" src="/cardapio-online-main/public/js/api/administrativo/loadContent.js"></script>
+    <script type="module" src="/cardapio-online-main/public/js/api/administrativo/produtos.js"></script>
+    <script type="module" src="/cardapio-online-main/public/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Exemplo de chamada para o modal de produtos, ajuste conforme necessário
+            const produtosLink = document.getElementById('produtos-link');
+            produtosLink.addEventListener('click', () => {
+                document.getElementById('modal-produto').style.display = 'block';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+    const produtosLink = document.getElementById('produtos-link');
+    const modalProduto = document.getElementById('modal-produto');
+    const btnClose = modalProduto.querySelector('.btn-close');
+
+
+    // Evento de clique para fechar o modal
+    btnClose.addEventListener('click', () => {
+        modalProduto.style.display = 'none'; // Oculta o modal
+    });
+
+    // Fechar modal ao clicar fora dele
+    window.addEventListener('click', (event) => {
+        if (event.target === modalProduto) {
+            modalProduto.style.display = 'none';
+        }
+    });
+});
+
+    </script>
+</body>
+
+</html>

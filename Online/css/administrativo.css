@@ -1,0 +1,404 @@
+/* Reseta padrões de estilo */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container Principal */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Estilo do Menu Lateral */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+/* Título da Sidebar */
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+/* Estilo dos Links/Botões na Sidebar */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 15px; /* Espaço extra entre os botões */
+}
+
+.sidebar a {
+    text-decoration: none;
+    display: block;
+    width: 100%; /* Faz o botão ocupar toda a largura */
+    padding: 15px;
+    background-color: #f1c40f; /* Cor de fundo padrão */
+    color: #333;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a:hover {
+    background-color: #d4ac0d; /* Cor de fundo ao hover */
+    transform: translateY(-2px); /* Leve elevação ao hover */
+}
+
+.sidebar a:active {
+    background-color: #b7950b; /* Cor de fundo ao clicar */
+    transform: translateY(0); /* Volta ao estado original ao clicar */
+}
+
+
+/* Estilo Geral dos Botões */
+.btn-yellow {
+    background-color: #f1c40f;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-yellow:hover {
+    background-color: #d4ac0d;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-yellow:active {
+    background-color: #b7950b;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do Container de Ações */
+#produtos-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilo do Botão de Retorno */
+#btnVoltarProdutos {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+/* Estilo das Tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f8f9fa;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+table img {
+    max-width: 100px;
+    border-radius: 5px;
+}
+
+/* Botões de Ação na Tabela */
+table button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+table button:hover {
+    background-color: #2980b9;
+}
+
+table button:active {
+    background-color: #1f6399;
+}
+
+table button:nth-child(2) {
+    background-color: #e74c3c;
+}
+
+table button:nth-child(2):hover {
+    background-color: #c0392b;
+}
+
+table button:nth-child(2):active {
+    background-color: #962d22;
+}
+
+
+/* Estilo do Conteúdo Principal */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+}
+
+.main-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.main-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Botão de Alternância do Menu Lateral para Dispositivos Móveis */
+#toggle-sidebar {
+    display: none;
+    background-color: #FFD700;
+    border: none;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+/* Estilo Responsivo */
+@media (max-width: 768px) {
+    /* Mostrar o botão de alternância em dispositivos móveis */
+    #toggle-sidebar {
+        display: block;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100%;
+        z-index: 1000;
+        transition: left 0.3s;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .main-content {
+        padding: 20px;
+        padding-top: 60px; /* Para evitar sobreposição com o botão do menu */
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .sidebar h2 {
+        font-size: 20px;
+    }
+
+    .btn-yellow {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .main-content h1 {
+        font-size: 28px;
+    }
+
+    .main-content p {
+        font-size: 16px;
+    }
+}/* Estilo Geral do Formulário de Cadastro */
+#produtoForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#produtoForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+#produtoForm input[type="text"],
+#produtoForm input[type="number"],
+#produtoForm select,
+#produtoForm input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+#produtoForm input[type="text"]:focus,
+#produtoForm input[type="number"]:focus,
+#produtoForm select:focus,
+#produtoForm input[type="file"]:focus {
+    border-color: #f1c40f;
+}
+
+#produtoForm button {
+    background-color: #f1c40f;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#produtoForm button:hover {
+    background-color: #d4ac0d;
+    transform: translateY(-2px);
+}
+
+#produtoForm button:active {
+    background-color: #b7950b;
+    transform: translateY(0);
+}
+
+#chooseImageButton {
+    background-color: #3498db;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#chooseImageButton:hover {
+    background-color: #2980b9;
+}
+
+#chooseImageButton:active {
+    background-color: #1f6399;
+}
+
+/* Estilo para o Preview da Imagem */
+#previewImage {
+    display: block;
+    max-width: 100px;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo Geral da Página de Cadastro */
+.main-content {
+    padding: 40px;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Título da Página de Cadastro */
+.main-content h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-container {
+    display: none; /* Inicialmente escondido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Para ficar acima de outros conteúdos */
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+}
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.btn-close {
+    cursor: pointer;
+    font-size: 18px;
+    color: #000;
+    float: right;
+}

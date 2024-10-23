@@ -13,6 +13,7 @@ var VALOR_ENTREGA = 10;
 const VALOR_TOTAL = 0; // Exemplo de valor total em reais
 
 
+
 CELULAR_EMPRESA = '5511958705804';
 
 cardapio.eventos = {
@@ -515,10 +516,6 @@ function meuModalPagamento() {
     meuModal.show();
 }
 
-// Adiciona o evento de clique ao botão
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('botaoAbrirModal').addEventListener('click', meuModalPagamento);
-});
 
 
 
@@ -640,15 +637,68 @@ function validarReserva() {
     }
     return true; // Permite o envio do formulário
 }
-atualizarCarrinho: (id, qntd) => {
-    // atualiza o carrinho
-    let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
-    MEU_CARRINHO[objIndex].qntd = qntd;
 
-    // salva o carrinho no localStorage
-    localStorage.setItem('carrinho', JSON.stringify(MEU_CARRINHO));
 
-    // atualização de outros elementos
-    cardapio.metodos.atualizarBadgeTotal();
-    cardapio.metodos.carregarValores();
-}
+const renderPaymentBrick = async (bricksBuilder) => {
+    const settings = {
+      initialization: {
+        /*
+         "amount" é o valor total a ser pago por todos os meios de pagamento
+       com exceção da Conta Mercado Pago e Parcelamento sem cartão de crédito, que tem seu valor de processamento determinado no backend através do "preferenceId"
+        */
+        amount: 100,
+        preferenceId: "444959623",
+      },
+      customization: {
+        paymentMethods: {
+          ticket: "all",
+          bankTransfer: "all",
+          creditCard: "all",
+          debitCard: "all",
+          mercadoPago: "all",
+        },
+      },
+      callbacks: {
+        onReady: () => {
+          /*
+           Callback chamado quando o Brick estiver pronto.
+           Aqui você pode ocultar loadings do seu site, por exemplo.
+          */
+        },
+        onSubmit: ({ selectedPaymentMethod, formData }) => {
+          // callback chamado ao clicar no botão de submissão dos dados
+          return new Promise((resolve, reject) => {
+            fetch("/process_payment", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            })
+              .then((response) => response.json())
+              .then((response) => {
+                // receber o resultado do pagamento
+                resolve();
+              })
+              .catch((error) => {
+                // lidar com a resposta de erro ao tentar criar o pagamento
+                reject();
+              });
+          });
+        },
+        onError: (error) => {
+          // callback chamado para todos os casos de erro do Brick
+          console.error(error);
+        },
+      },
+    };
+    window.paymentBrickController = await bricksBuilder.create(
+      "payment",
+      "paymentBrick_container",
+      settings
+    );
+   };
+   renderPaymentBrick(bricksBuilder);
+   
+
+
