@@ -1,3 +1,4 @@
+
 $(document).ready(function () { // pega o elemento "document", após ele está todo carregado
     cardapio.eventos.init();
 });
@@ -8,10 +9,7 @@ var MEU_CARRINHO = [];
 var MEU_ENDERECO = null;
 
 var VALOR_CARRINHO = 0;
-var VALOR_ENTREGA = 10;
-
-const VALOR_TOTAL = 0; // Exemplo de valor total em reais
-
+var VALOR_ENTREGA = 0;
 
 
 CELULAR_EMPRESA = '5511958705804';
@@ -22,6 +20,7 @@ cardapio.eventos = {
 
     }
 }
+
 
 cardapio.metodos = {
 
@@ -111,7 +110,8 @@ cardapio.metodos = {
         }
     
         cardapio.metodos.mensagem('Item adicionado ao carrinho', 'green');
-        $('#qntd-' + id).text(0);
+        $('#qntd-'+id).text(0);
+
         cardapio.metodos.atualizarBadgeTotal();
     },
     
@@ -212,21 +212,21 @@ cardapio.metodos = {
 
         cardapio.metodos.carregarEtapa(1);
 
-        if (MEU_CARRINHO.length > 0) {
+        if(MEU_CARRINHO.length > 0) {
 
             $("#itensCarrinho").html('');
 
             $.each(MEU_CARRINHO, (i, e) => {
                 let temp = cardapio.templates.itemCarrinho.replace(/\${img}/g, e.img)
-                    .replace(/\${nome}/g, e.name)
-                    .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
-                    .replace(/\${id}/g, e.id)
-                    .replace(/\${qntd}/g, e.qntd);
+                .replace(/\${nome}/g, e.name)
+                .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
+                .replace(/\${id}/g, e.id)
+                .replace(/\${qntd}/g, e.qntd);
 
                 $("#itensCarrinho").append(temp);
 
                 // ultimo item
-                if ((i + 1) == MEU_CARRINHO.length) {
+                if((i+1) == MEU_CARRINHO.length) {
                     cardapio.metodos.carregarValores();
                 }
             })
@@ -238,10 +238,10 @@ cardapio.metodos = {
 
     // diminuir a quantidade do item no carrinho
     diminuirQuantidadeCarrinho: (id) => {
-        let qntdAtual = parseInt($('#qntd-carrinho-' + id).text());
+        let qntdAtual = parseInt($('#qntd-carrinho-'+id).text()); 
 
-        if (qntdAtual > 1) {
-            $('#qntd-carrinho-' + id).text(qntdAtual - 1);
+        if(qntdAtual > 1) {
+            $('#qntd-carrinho-'+id).text(qntdAtual - 1);
             cardapio.metodos.atualizarCarrinho(id, qntdAtual - 1);
         } else {
             cardapio.metodos.removerItemCarrinho(id);
@@ -250,8 +250,8 @@ cardapio.metodos = {
 
     // aumentar a quantidade do item no carrinho
     aumentarQuantidadeCarrinho: (id) => {
-        let qntdAtual = parseInt($('#qntd-carrinho-' + id).text());
-        $('#qntd-carrinho-' + id).text(qntdAtual + 1);
+        let qntdAtual = parseInt($('#qntd-carrinho-'+id).text());
+        $('#qntd-carrinho-'+id).text(qntdAtual + 1);
         cardapio.metodos.atualizarCarrinho(id, qntdAtual + 1);
     },
 
@@ -272,7 +272,7 @@ cardapio.metodos = {
 
         // atualiza o botão carrinho com a quantidade atualizada
         cardapio.metodos.atualizarBadgeTotal();
-
+        
         // atualiza os valores (R$) totais do carrinho
         cardapio.metodos.carregarValores();
     },
@@ -288,16 +288,15 @@ cardapio.metodos = {
         $.each(MEU_CARRINHO, (i, e) => {
             VALOR_CARRINHO += parseFloat(e.price * e.qntd);
 
-            if ((i + 1) == MEU_CARRINHO.length) {
+            if((i + 1) == MEU_CARRINHO.length) {
                 $("#lblSubTotal").text(`R$ ${VALOR_CARRINHO.toFixed(2).replace('.', ',')}`);
-                $("#lblValorEntrega").text(`+ R$ ${VALOR_ENTREGA.toFixed(2).replace('.', ',')}`);
                 $("#lblValorTotal").text(`R$ ${(VALOR_ENTREGA + VALOR_CARRINHO).toFixed(2).replace('.', ',')}`);
             }
         })
     },
 
     carregarEndereco: () => {
-        if (MEU_CARRINHO.length <= 0) {
+        if(MEU_CARRINHO.length <= 0) {
             cardapio.metodos.mensagem('Seu carrinho está vazio.');
             return;
         }
@@ -312,14 +311,14 @@ cardapio.metodos = {
         var cep = $("#txtCEP").val().trim().replace(/\D/g, '');
 
         // verifica se o CEP possui valor informado
-        if (cep != "") {
+        if(cep != "") {
             // Expressão regular para validar o CEP
             var validacep = /^[0-9]{8}$/;
 
-            if (validacep.test(cep)) {
+            if(validacep.test(cep)) {
 
-                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-                    if (!("erro" in dados)) {
+                $.getJSON("https://viacep.com.br/ws/"+cep+"/json/?callback=?", function (dados) {
+                    if(!("erro" in dados)) {
                         // atualizar os campos com valores retornados 
                         $("#txtEndereco").val(dados.logradouro);
                         $("#txtBairro").val(dados.bairro);
@@ -328,13 +327,13 @@ cardapio.metodos = {
                         $("#txtNumero").focus();
                     } else {
                         cardapio.metodos.mensagem('CEP não encontrado. Preencha as informações manualmente.');
-                        $("#txtEndereco").focus();
+                        $("#txtEndereco").focus(); 
                     }
                 })
 
             } else {
                 cardapio.metodos.mensagem('Formato de CEP inválido.');
-                $("#txtCEP").focus();
+                $("#txtCEP").focus(); 
             }
         } else {
             cardapio.metodos.mensagem('Informe o CEP, por favor.');
@@ -353,37 +352,37 @@ cardapio.metodos = {
         let numero = $("#txtNumero").val().trim();
         let complemento = $("#txtComplemento").val().trim();
 
-        if (cep.length <= 0) {
+        if(cep.length <= 0) {
             cardapio.metodos.mensagem('Informe o CEP, por favor.');
             $("#txtCEP").focus();
             return;
         }
 
-        if (endereco.length <= 0) {
+        if(endereco.length <= 0) {
             cardapio.metodos.mensagem('Informe o Endereço, por favor.');
             $("#txtEndereco").focus();
             return;
         }
 
-        if (bairro.length <= 0) {
+        if(bairro.length <= 0) {
             cardapio.metodos.mensagem('Informe o Bairro, por favor.');
             $("#txtBairro").focus();
             return;
         }
 
-        if (cidade.length <= 0) {
+        if(cidade.length <= 0) {
             cardapio.metodos.mensagem('Informe o Cidade, por favor.');
             $("#txtCidade").focus();
             return;
         }
 
-        if (uf == "-1") {
+        if(uf == "-1") {
             cardapio.metodos.mensagem('Informe o UF, por favor.');
             $("#ddlUf").focus();
             return;
         }
 
-        if (numero.length <= 0) {
+        if(numero.length <= 0) {
             cardapio.metodos.mensagem('Informe o Número, por favor.');
             $("#txtNumero").focus();
             return;
@@ -419,28 +418,27 @@ cardapio.metodos = {
 
         $("#resumoEndereco").html(`${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`)
         $("#cidadendereco").html(`${MEU_ENDERECO.cidade}-${MEU_ENDERECO.uf} / ${MEU_ENDERECO.cep} ${MEU_ENDERECO.complemento}`)
-
+    
         cardapio.metodos.finalizarPedido();
     },
-
 
     // Atualiza o link do botão do WhatsApp
     finalizarPedido: () => {
 
-        if (MEU_CARRINHO.length > 0 && MEU_ENDERECO != null) {
+        if(MEU_CARRINHO.length > 0 && MEU_ENDERECO != null) {
             var texto = 'Olá! gostaria de fazer um pedido:';
             texto += `\n*Itens do pedido:*\n\n\${itens}`;
             texto += '\n*Endereço de entrega:*';
             texto += `\n${MEU_ENDERECO.endereco}, ${MEU_ENDERECO.numero}, ${MEU_ENDERECO.bairro}`;
             texto += `\n${MEU_ENDERECO.cidade}-${MEU_ENDERECO.uf} / ${MEU_ENDERECO.cep} ${MEU_ENDERECO.complemento}`;
-            texto += `\n\n*Total (com entrega): R$ ${(VALOR_CARRINHO + VALOR_ENTREGA).toFixed(2).replace('.', ',')}*`;
+            texto += `\n\n*Total: R$ ${(VALOR_CARRINHO + VALOR_ENTREGA).toFixed(2).replace('.', ',')}*`;
 
             var itens = '';
 
             $.each(MEU_CARRINHO, (i, e) => {
                 itens += `*${e.qntd}x* ${e.name} ........ R$ ${e.price.toFixed(2).replace('.', ',')} \n`;
-
-                if ((i + 1) == MEU_CARRINHO.length) {
+            
+                if((i+1) == MEU_CARRINHO.length) {
 
                     texto = texto.replace(/\${itens}/g, itens);
 
@@ -453,71 +451,36 @@ cardapio.metodos = {
             })
         }
 
-        mensagem : (texto, cor = 'red', tempo = 3500) => {
-            let id = Math.floor(Date.now() * Math.random()).toString();
-        
-            // Corrigido o atributo "class" e adicionado aspas ao seletor
-            let msg = `<div id="msg-${id}" class="animated fadeInDown toast ${cor}">${texto}</div>`;
-            
-            $('#container-mensagens').append(msg);
-        
-            setTimeout(() => {
-                $("#msg-" + id).removeClass('fadeInDown');
-                $("#msg-" + id).addClass('fadeOutUp');
-                
-                setTimeout(() => {
-                    $("#msg-" + id).remove();
-                }, 800);
-            }, tempo);
-        }
-        
-    }
-    
-}
-mensagem: (texto, cor = 'red', tempo = 3500) => {
-    let id = Math.floor(Date.now() * Math.random()).toString();
+    },
 
-    // Criação da mensagem com animação
-    let msg = `<div id="msg-${id}" class="animated fadeInDown toast ${cor}">${texto}</div>`;
-    
-    $('#container-mensagens').append(msg);
+    // carrega o link do botão reserva
+    carregarBotaoReserva: () => {
 
-    setTimeout(() => {
-        $("#msg-" + id).removeClass('fadeInDown');
-        $("#msg-" + id).addClass('fadeOutUp');
-        
+        var texto = 'Olá! gostaria de fazer uma *reserva*';
+
+        let encode = encodeURI(texto);
+        let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
+
+        $("#btnReserva").attr('href', URL);
+    },
+
+
+    mensagem: (texto, cor = 'red', tempo = 3500) => {
+        let id = Math.floor(Date.now * Math.random()).toString();
+
+        let msg = `<div id="msg-${id}" clas="animated fadeInDown toast ${cor}">${texto}</div>`;
+
+        $('#container-mensagens').append(msg);
+
         setTimeout(() => {
-            $("#msg-" + id).remove();
-        }, 800);
-    }, tempo);
+            $("#msg-" + id).removeClass('fadeInDown');
+            $("#msg-" + id).addClass('fadeOutUp');
+            setTimeout(() => {
+                $("#msg-" + id).remove();
+            }, 800)
+        }, tempo)
+    }
 }
-
-
-atualizarCarrinho: (id, qntd) => {
-    // atualiza o carrinho
-    let objIndex = MEU_CARRINHO.findIndex((obj => obj.id == id));
-    MEU_CARRINHO[objIndex].qntd = qntd;
-
-    // salva o carrinho no localStorage
-    localStorage.setItem('carrinho', JSON.stringify(MEU_CARRINHO));
-
-    // atualização de outros elementos
-    cardapio.metodos.atualizarBadgeTotal();
-    cardapio.metodos.carregarValores();
-}
-// Função para abrir o modal
-function meuModalPagamento() {
-    // Seleciona o modal
-    var meuModal = new bootstrap.Modal(document.getElementById('meuModalPagamento'), {
-        keyboard: false // Impede que o modal feche com a tecla Esc
-    });
-
-    // Abre o modal
-    meuModal.show();
-}
-
-
-
 
 cardapio.templates = {
     item: `
@@ -582,31 +545,6 @@ cardapio.templates = {
 
 
 
-function gerarQRCode() {
-
-    // Formatar o valor para centavos
-    const valorCentavos = (VALOR_TOTAL * 100).toFixed(0);
-
-
-    // Monta a string Pix com o valor dinâmico
-    const pixCode = `00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e7352040000${String(VALOR_TOTAL).padStart(10, '0')}5802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512`;
-
-    // Gera o QR Code com a string Pix montada
-    new QRCode(document.getElementById("qrcode"), {
-        text: pixCode,
-        width: 256,
-        height: 256
-    });
-}
-
-
-
-function copiarCodigoPix() {
-    const codigoPix = document.getElementById("codigoPix").value;
-    navigator.clipboard.writeText(codigoPix);
-    alert("Código Pix copiado!");
-}
-
 function carregarBotaoLigar() {
     const nome = $('#nome').val();
     const data = $('#data').val();
@@ -637,68 +575,4 @@ function validarReserva() {
     }
     return true; // Permite o envio do formulário
 }
-
-
-const renderPaymentBrick = async (bricksBuilder) => {
-    const settings = {
-      initialization: {
-        /*
-         "amount" é o valor total a ser pago por todos os meios de pagamento
-       com exceção da Conta Mercado Pago e Parcelamento sem cartão de crédito, que tem seu valor de processamento determinado no backend através do "preferenceId"
-        */
-        amount: 100,
-        preferenceId: "444959623",
-      },
-      customization: {
-        paymentMethods: {
-          ticket: "all",
-          bankTransfer: "all",
-          creditCard: "all",
-          debitCard: "all",
-          mercadoPago: "all",
-        },
-      },
-      callbacks: {
-        onReady: () => {
-          /*
-           Callback chamado quando o Brick estiver pronto.
-           Aqui você pode ocultar loadings do seu site, por exemplo.
-          */
-        },
-        onSubmit: ({ selectedPaymentMethod, formData }) => {
-          // callback chamado ao clicar no botão de submissão dos dados
-          return new Promise((resolve, reject) => {
-            fetch("/process_payment", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            })
-              .then((response) => response.json())
-              .then((response) => {
-                // receber o resultado do pagamento
-                resolve();
-              })
-              .catch((error) => {
-                // lidar com a resposta de erro ao tentar criar o pagamento
-                reject();
-              });
-          });
-        },
-        onError: (error) => {
-          // callback chamado para todos os casos de erro do Brick
-          console.error(error);
-        },
-      },
-    };
-    window.paymentBrickController = await bricksBuilder.create(
-      "payment",
-      "paymentBrick_container",
-      settings
-    );
-   };
-   renderPaymentBrick(bricksBuilder);
-   
-
 

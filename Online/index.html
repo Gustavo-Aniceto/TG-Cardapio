@@ -400,10 +400,10 @@
                                 </p>
                                 <p class="cidade-endereco" id="cidadendereco">
                                 </p>
-                                <button id="paymentBrick_container" type="button" class="btn btn-yellow btn-sm">
+                                <button id="gerar-link-pagamento" type="button" class="btn btn-yellow btn-sm">
                                     Realizar Pagamento
                                 </button>
-                                <div id="paymentBrick_container"></div>
+                               
 
 
                             </div>
@@ -412,46 +412,10 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="meuModalPagamento" tabindex="-1" aria-labelledby="meuModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="meuModalLabel">Pagamento via Pix</h5>
-                        </div>
-                        <div>
-                            <canvas id="qrCanvas"></canvas>
-                            <p>Escanei esse QrCode para realizar o pagamento</p>
-                            <p>Copie este código para fazer o pagamento</p>
-                            <input type="text" id="codigoPix"
-                                value="00020101021126580014br.gov.bcb.pix01361624e4ae-41e2-4070-beec-3b8628176e735204000053039865802BR5924GUSTAVO HENRIQUE ANICETO6009SAO PAULO622905251J9VJ0S014GTEJ4SJ5EEVNGQF6304B512">
-                            <button onclick="copiarCodigoPix()" class="botao-branco">Copiar código</button>
-                            <button onclick="gerarQRCode()" id="qrcode" class="btn btn-secondary">Gerar QR Code</button>
-                        </div>
-                        <div class="modal-footer">
-
-                            <button type="button" class="btn btn-white float-right mr-3 hidden" id="btnFecharModal"
-                                data-bs-dismiss="modal">Voltar</button>
-                            <a href="#" target="_blank" class="btn btn-yellow float-right hidden"
-                                id="btnEtapaResumo">Enviar pedido</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
 
             <div class="m-footer">
                 <div class="container">
                     <div class="container-total text-right mb-4">
-                        <p class="mb-0">
-                            <span>Subtotal:</span>
-                            <span id="lblSubTotal">R$ 0,00</span>
-                        </p>
-                        <p class="mb-0 texto-entrega">
-                            <span><i class="fas fa-motorcycle"> Entrega:</i></span>
-                            <span id="lblValorEntrega">+ R$ 0,00</span>
-                        </p>
                         <p class="mb-0 texto-total">
                             <span><b>Total:</b></span>
                             <span class="valor-total"><b id="lblValorTotal">R$ 0,00</b></span>
@@ -468,7 +432,6 @@
                 </div>
             </div>
         </div>
-        <script src="https://sdk.mercadopago.com/js/v2"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -479,6 +442,19 @@
         <script type="text/javascript" src="./js/wow.min.js"></script>
         <script type="text/javascript" src="./js/dados.js"></script>
         <script type="text/javascript" src="./js/app.js"></script>
+
+
+        <script>
+            document.getElementById("gerar-link-pagamento").addEventListener("click", function() {
+                fetch("http://127.0.0.1:5000/gerar-link-pagamento")
+                    .then(response => response.json())
+                    .then(data => {
+                        window.location.href = data.link;
+                    })
+                    .catch(error => console.error("Erro ao gerar o link de pagamento:", error));
+            });
+        </script>
+        
 
         <script>new WOW().init();</script>
 </body>
