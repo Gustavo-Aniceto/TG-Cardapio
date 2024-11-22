@@ -124,6 +124,114 @@ a.navbar-brand {
     text-align: center;
     padding-top: 8px;
 }
+.modal-dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.modal-content {
+    height: 100%;
+    border: none;
+    border-radius: 0; /* Remove bordas arredondadas */
+}
+.modal-dialog.modal-fullscreen {
+    margin: 0;
+}
+
+
+.botao-branco {
+    background-color: white;
+    color: #333; /* Ajuste a cor do texto conforme necessário */
+    border: 1px solid #ddd; /* Cor da borda */
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.botao-branco:hover {
+    background-color: #f2f2f2; /* Cor de fundo no hover */
+}
+
+.botao-branco:active {
+    background-color: #e0e0e0; /* Cor de fundo ao clicar */
+}
+
+.qrCanvas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.qrCanvas input {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.qrCanvas button {
+    width: auto;
+}
+
+#formReserva {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+/* Estilo para os labels */
+#formReserva label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Estilo para os inputs */
+#formReserva input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+/* Estilo para o foco nos inputs */
+#formReserva input:focus {
+    border-color: #f4c949;
+    outline: none;
+}
+
+/* Estilo para o botão */
+#formReserva button {
+    background-color: #f4c949;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+/* Estilo para o botão ao passar o mouse */
+#formReserva button:hover {
+    background-color: #000000;
+}
+
 
 .btn-sm {
     padding: 9px 15px!important;
@@ -133,6 +241,11 @@ a.navbar-brand {
 
 .btn-social {
     width: 50px;
+}
+
+
+.hidden {
+    display: none;
 }
 
 .card-banner {

@@ -108,10 +108,14 @@
     }
 
     .title-produto {
-        margin-top: 0px!important;
-        height: 30px!important;
-        width: 100%;
-        text-align: left!important;
+        color: var(--color-black);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limita a 2 linhas */
+        -webkit-box-orient: vertical;
+        height: auto; /* Ajusta dinamicamente */
+        margin-bottom: 8px;
     }
 
     .price-produto {

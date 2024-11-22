@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "mercadopago": "^2.0.15",
-    "mongodb": "^6.10.0"
-  }
-}

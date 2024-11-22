@@ -160,27 +160,7 @@ a.navbar-brand {
     background-color: #e0e0e0; /* Cor de fundo ao clicar */
 }
 
-.qrCanvas {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
 
-.qrCanvas input {
-    width: 100%;
-    max-width: 300px;
-    text-align: center;
-    margin-bottom: 15px;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-
-.qrCanvas button {
-    width: auto;
-}
 
 #formReserva {
     background-color: #f9f9f9;
@@ -214,7 +194,12 @@ a.navbar-brand {
     border-color: #f4c949;
     outline: none;
 }
-
+.descricao {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin-top: 0.5rem;
+}
 /* Estilo para o botão */
 #formReserva button {
     background-color: #f4c949;
@@ -355,7 +340,15 @@ a.navbar-brand {
 }
 
 .card-item {
-    height: 360px;
+    display: flex; /* Para organizar os elementos */
+    flex-direction: column; /* Colocar os itens em uma coluna */
+    justify-content: space-between; /* Distribuir o conteúdo uniformemente */
+    align-items: center; /* Centralizar o conteúdo horizontalmente */
+    height: 100%; /* Preencher toda a altura da coluna */
+    padding: 16px; /* Adicionar espaço interno */
+    background-color: #fff; /* Fundo branco */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adicionar sombra */
 }
 
 .card-item .img-produto img {

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Aprovada</title>
+    <link rel="icon" type="image/png" href="/Online/img/logo.png">
+       
+    <style>
+        /* Estilo do Corpo */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #FFD700; /* Fundo amarelo */
+        }
+
+        /* Container centralizado */
+        .container {
+            text-align: center;
+            animation: fadeIn 1s ease-in-out; /* Efeito de fade-in */
+        }
+
+        /* Logo */
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+            animation: shake 1s infinite; /* Efeito de shake */
+        }
+
+        /* Mensagem de erro */
+        .error-message {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007b00; /* Vermelho escuro para maior contraste */
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite; /* Efeito de pulsação */
+        }
+       /* Botão de voltar ao menu */
+       .menu-button {
+            background-color: #FFFFFF; /* Fundo branco */
+            color: #000000; /* Texto preto */
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            transition: transform 0.2s ease, background-color 0.2s ease; /* Transições suaves */
+        }
+
+        /* Efeito de Hover para o Botão */
+        .menu-button:hover {
+            background-color: #D3D3D3; /* Fundo cinza claro */
+            color: #000000; /* Mantém o texto preto */
+            transform: translateY(-3px); /* Levanta o botão no hover */
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/Online/img/logo.png" alt="Logo" class="logo">
+        <p class="error-message">Seu pagamento foi aprovado, click no botão abaixo para enviar o pedido.</p>
+
+        <a href="#" target="_blank" class="menu-button" id="finalizarPedido">Enviar pedido</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="./js/modernizr-3.5.0.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/popper.min.js"></script>
+    <script type="text/javascript" src="./js/wow.min.js"></script>
+    <script type="text/javascript" src="./js/dados.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+</body>
+</html>
