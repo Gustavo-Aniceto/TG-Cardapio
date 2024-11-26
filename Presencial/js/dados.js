@@ -429,7 +429,7 @@ var MENU = {
             "price": 79
         }
     ],
-    "steaks": [
+    "Tradicionais": [
         {
             "id": "california-reserve-filet-mignon-steaks-gift-box",
             "img": "./img/cardapio/steaks/california-reserve-filet-mignon-steaks-gift-box.bf226e317aad85f47897ae7e325f790d.jpg",
