@@ -7,6 +7,7 @@ var cardapio = {};
 
 var MEU_CARRINHO = [];
 var MEU_ENDERECO = null;
+VALOR_ENTREGA=0;
 
 CELULAR_EMPRESA = '5511958705804';
 
@@ -218,7 +219,7 @@ cardapio.metodos = {
                 .replace(/\${nome}/g, e.name)
                 .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
                 .replace(/\${id}/g, e.id)
-                .replace(/\${dsc}/g, produto.dsc || "Descrição não disponível")
+                .replace(/\${dsc}/g, e.dsc)
                 .replace(/\${qntd}/g, e.qntd);
 
                 $("#itensCarrinho").append(temp);
@@ -409,7 +410,6 @@ cardapio.metodos = {
             let temp = cardapio.templates.itemResumo.replace(/\${img}/g, e.img)
                 .replace(/\${nome}/g, e.name)
                 .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
-                .replace(/\${dsc}/g, e.produto.dsc)
                 .replace(/\${qntd}/g, e.qntd);
 
             $("#listaItensResumo").append(temp);

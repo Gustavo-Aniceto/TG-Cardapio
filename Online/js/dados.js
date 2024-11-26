@@ -503,7 +503,7 @@ var MENU = {
         {
             "id": "Contra File",
             "img": "./img/cardapio/steaks/california-reserve-filet-mignon-steak.ff15071964ec8141d30c2ba05fb117e0.jpg",
-            "name": "Contra File",
+            "name": "Contra Filé",
             "dsc": "Contra File e fritas",
             "price": 40
         },

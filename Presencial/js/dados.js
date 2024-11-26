@@ -431,87 +431,87 @@ var MENU = {
     ],
     "Tradicionais": [
         {
-            "id": "california-reserve-filet-mignon-steaks-gift-box",
-            "img": "./img/cardapio/steaks/california-reserve-filet-mignon-steaks-gift-box.bf226e317aad85f47897ae7e325f790d.jpg",
-            "name": "Flannery Beef",
-            "dsc": "California Reserve Filet Mignon Steaks Gift Box",
-            "price": 129
+            "id": "Feijoada Completa",
+            "img": "./img/cardapio/steaks/OIP.jpg",
+            "name": "Feijoada Completa",
+            "dsc": "Feija,carnes e couve",
+            "price": 80
         },
         {
-            "id": "steaks-and-cakes-date-night-dinner-for-2",
-            "img": "./img/cardapio/steaks/valentines-steaks-and-cakes-dinner-for-2.0c63dab635eed46209455dc33cd25ea8.jpg",
-            "name": "Chesapeake Bay Gourmet",
-            "dsc": "Steaks and Cakes Date Night Dinner for 2",
-            "price": 129
+            "id": "Curau de Milho",
+            "img": "./img/cardapio/steaks/curau.jpg",
+            "name": "Curau de Milho",
+            "dsc": " Milho, leite canela",
+            "price": 30
         },
         {
-            "id": "Prime-holiday-steak-sampler-for-10-12",
-            "img": "./img/cardapio/steaks/holiday-sampler-9-pack.2de75ca80282ffe9d064eb757ff7a5a1.jpg",
-            "name": "Saltbrick Prime",
-            "dsc": "Chef Matt's Steak Sampler for 10-12",
-            "price": 179
+            "id": "Tambaqui assado",
+            "img": "./img/cardapio/steaks/Tambaqui assado com recheio.jpg",
+            "name": "Tambaqui assado",
+            "dsc": "Tambaqui assado recheiado",
+            "price": 100
         },
         {
-            "id": "bone-in-rib-steak",
-            "img": "./img/cardapio/steaks/bone-in-rib-steak.b13d9d4233035767605f0de9acdce1ab.jpg",
-            "name": "Old Homestead Steakhouse",
-            "dsc": "Bone-in Rib Steak",
-            "price": 159
+            "id": "Moqueca de peixe",
+            "img": "./img/cardapio/steaks/Moqueca de peixe.jpg",
+            "name": "Moqueca de peixe",
+            "dsc": "Moqueca de peixe",
+            "price": 120
         },
         {
-            "id": "american-wagyu-gold-grade-top-sirloins",
-            "img": "./img/cardapio/steaks/american-wagyu-gold-grade-sirloins.040dbeb8f8e615b91fa7e513e3dc089c.jpg",
-            "name": "Snake River Farms",
-            "dsc": "American Wagyu Gold Grade Top Sirloins",
+            "id": "Pato no Tucupi",
+            "img": "./img/cardapio/steaks/Pato no Tucupi.jpg",
+            "name": "Pato no Tucupi",
+            "dsc": "Pato no Tucupi",
             "price": 119
         },
         {
-            "id": "2-peter-luger-steak-pack-b",
-            "img": "./img/cardapio/steaks/peter-luger-steak-pack-b.9feb0300e6be2dfecfa314f2006a2183.jpg",
-            "name": "Peter Luger Steak House",
-            "dsc": "Peter Luger Porterhouse Steaks",
-            "price": 215.95
+            "id": "Galinhada com pequi",
+            "img": "./img/cardapio/steaks/Galinhada com pequi.jpg",
+            "name": "Galinhada com pequi",
+            "dsc": "Galinhada com pequi",
+            "price": 150
         },
         {
-            "id": "ribeye-prime-steak-gift-box",
-            "img": "./img/cardapio/steaks/ribeye-prime-steak-gift-box.e74cb016baabbb2df73861de8150f29c.jpg",
-            "name": "Churchill's Steakhouse",
-            "dsc": "Ribeye Prime Steak Gift Box",
-            "price": 229
+            "id": "Vaca Atolada",
+            "img": "./img/cardapio/steaks/Vaca Atolada.jpg",
+            "name": "Vaca Atolada",
+            "dsc": "Vaca Atolada",
+            "price": 130
         },
         {
-            "id": "dry-aged-usda-prime-black-angus-porterhouse-steak-2-pack",
-            "img": "./img/cardapio/steaks/usda-prime-black-angus-filet-mignon-barrel-cut.6ee213799e7d1848763d12edca18e3b1.jpg",
-            "name": "Pat LaFrieda Meats",
-            "dsc": "Dry-Aged USDA Prime Black Angus Porterhouse Steak - 2 Pack",
-            "price": 96.7
+            "id": "Acarajé",
+            "img": "./img/cardapio/steaks/Acarajé.jpg",
+            "name": "Acarajé",
+            "dsc": "Acarajé, Pimenta, dendê",
+            "price": 99
         },
         {
-            "id": "california-reserve-ribeye-steak",
-            "img": "./img/cardapio/steaks/california-reserve-ribeye-steak-12-oz.d367c5ae72dd9f89e170662104bef4fc.jpg",
-            "name": "Flannery Beef",
-            "dsc": "California Reserve Ribeye Steak - 12 oz",
-            "price": 32
+            "id": "Maria Isabel",
+            "img": "./img/cardapio/steaks/Maria Isabel.jpg",
+            "name": "Maria Isabel",
+            "dsc": "Maria Isabel",
+            "price": 39
         },
         {
-            "id": "dry-aged-boneless-ribeye-steak-dinner-kit-for-4",
-            "img": "./img/cardapio/steaks/dry-aged-boneless-ribeye-steak-dinner-for-4.81c3bdc05fe6bdb2c2214709863120e0.jpg",
-            "name": "Chef Francis Mallmann",
-            "dsc": "Dry-Aged Boneless Ribeye Steak Dinner Kit for 4",
+            "id": "Tacacá",
+            "img": "./img/cardapio/steaks/tacacá.jpg",
+            "name": "Tacacá",
+            "dsc": "Tacacá",
             "price": 225
         },
         {
-            "id": "california-reserve-filet-mignon-steak",
+            "id": "Contra File",
             "img": "./img/cardapio/steaks/california-reserve-filet-mignon-steak.ff15071964ec8141d30c2ba05fb117e0.jpg",
-            "name": "Flannery Beef",
-            "dsc": "California Reserve Filet Mignon Steak",
-            "price": 22
+            "name": "Contra File",
+            "dsc": "Contra File e fritas",
+            "price": 40
         },
         {
-            "id": "mesquite-smoked-peppered-beef-tenderloin",
+            "id": "Costela",
             "img": "./img/cardapio/steaks/mesquite-smoked-peppered-beef-tenderloin.5c314418a1f75c7057eed686e2fad46f.jpg",
-            "name": "Perini Ranch Steakhouse",
-            "dsc": "Mesquite Smoked Peppered Beef Tenderloin",
+            "name": "Costela",
+            "dsc": "Costela Recheada",
             "price": 165
         }
     ]

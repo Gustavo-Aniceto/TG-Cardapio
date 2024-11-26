@@ -9,7 +9,6 @@ var MEU_CARRINHO = [];
 var MEU_ENDERECO = null;
 
 var VALOR_CARRINHO = 0;
-var VALOR_ENTREGA = 0;
 
 
 CELULAR_EMPRESA = '5511958705804';
@@ -25,7 +24,7 @@ cardapio.eventos = {
 cardapio.metodos = {
 
     // obtem a lista de itens do cardápio
-    obterItensCardapio: (categoria = 'burgers', vermais = false) => {
+    obterItensCardapio: (categoria = 'Tradicionais', vermais = false) => {
         var filtro = MENU[categoria];
 
         if (!vermais) {
@@ -196,9 +195,6 @@ cardapio.metodos = {
         }
     },
 
-
-
-
     // botão de voltar etapa
     voltarEtapa: () => {
 
@@ -221,6 +217,7 @@ cardapio.metodos = {
                 .replace(/\${nome}/g, e.name)
                 .replace(/\${preco}/g, e.price.toFixed(2).replace('.', ','))
                 .replace(/\${id}/g, e.id)
+                .replace(/\${dsc}/g, produto.dsc || "Descrição não disponível")
                 .replace(/\${qntd}/g, e.qntd);
 
                 $("#itensCarrinho").append(temp);
@@ -281,8 +278,7 @@ cardapio.metodos = {
     carregarValores: () => {
         VALOR_CARRINHO = 0;
 
-        $("#lblSubTotal").text('R$ 0,00');
-        $("#lblValorEntrega").text('+ R$ 0,00');
+        $("#lblSubTotal").text('R$ 0,00');;
         $("#lblValorTotal").text('R$ 0,00');
 
         $.each(MEU_CARRINHO, (i, e) => {
@@ -452,34 +448,6 @@ cardapio.metodos = {
         }
 
     },
-
-    // carrega o link do botão reserva
-    carregarBotaoReserva: () => {
-
-        var texto = 'Olá! gostaria de fazer uma *reserva*';
-
-        let encode = encodeURI(texto);
-        let URL = `https://wa.me/${CELULAR_EMPRESA}?text=${encode}`;
-
-        $("#btnReserva").attr('href', URL);
-    },
-
-
-    mensagem: (texto, cor = 'red', tempo = 3500) => {
-        let id = Math.floor(Date.now * Math.random()).toString();
-
-        let msg = `<div id="msg-${id}" clas="animated fadeInDown toast ${cor}">${texto}</div>`;
-
-        $('#container-mensagens').append(msg);
-
-        setTimeout(() => {
-            $("#msg-" + id).removeClass('fadeInDown');
-            $("#msg-" + id).addClass('fadeOutUp');
-            setTimeout(() => {
-                $("#msg-" + id).remove();
-            }, 800)
-        }, tempo)
-    }
 }
 
 cardapio.templates = {
@@ -496,6 +464,7 @@ cardapio.templates = {
                     <b>R$ \${price}</b>
                 </p>
                 <div class="add-carrinho">
+                <p class="card-text">\${dsc}</p>
                     <span class="btn-menos" onclick="cardapio.metodos.diminuirQuantidade('\${id}')"><i class="fas fa-minus"></i></span>
                     <span class="add-numero-itens" id="qntd-\${id}">0</span>
                     <span class="btn-mais" onclick="cardapio.metodos.aumentarQuantidade('\${id}')"><i class="fas fa-plus"></i></span>
