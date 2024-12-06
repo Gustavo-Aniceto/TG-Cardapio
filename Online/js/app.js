@@ -491,11 +491,13 @@ cardapio.templates = {
                 <p class="title-produto text-center mt-4">
                     <b>\${name}</b>
                 </p>
+                <p 
+                    class="card-text">\${dsc}
+                </p>
                 <p class="price-produto text-center">
                     <b>R$ \${price}</b>
                 </p>
                 <div class="add-carrinho">
-                <p class="card-text">\${dsc}</p>
                     <span class="btn-menos" onclick="cardapio.metodos.diminuirQuantidade('\${id}')"><i class="fas fa-minus"></i></span>
                     <span class="add-numero-itens" id="qntd-\${id}">0</span>
                     <span class="btn-mais" onclick="cardapio.metodos.aumentarQuantidade('\${id}')"><i class="fas fa-plus"></i></span>

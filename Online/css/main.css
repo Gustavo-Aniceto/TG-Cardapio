@@ -346,7 +346,7 @@ a.navbar-brand {
     align-items: center; /* Centralizar o conteúdo horizontalmente */
     height: 100%; /* Preencher toda a altura da coluna */
     padding: 16px; /* Adicionar espaço interno */
-    background-color: #fff; /* Fundo branco */
+    background-color: #ffffff; /* Fundo branco */
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Adicionar sombra */
 }

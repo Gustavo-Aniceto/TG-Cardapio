@@ -3,11 +3,11 @@ from flask_cors import CORS
 import mercadopago
 
 app = Flask(__name__)
-CORS(app)  # Permite CORS para todas as rotas
+CORS(app, origins=['http://127.0.0.1:5500'])
 
 @app.route('/gerar-link-pagamento', methods=['GET'])
 def gerar_link_pagamento():
-    sdk = mercadopago.SDK("APP_USR-7088407773309513-092312-59bbf54bf6a0f1aa0de3f73f6150ab60-444959623")
+    sdk = mercadopago.SDK("APP_USR-6594311902089290-120516-fc10c46b889259df2a4fb4708f3c5567-444959623")
     payment_data = {
         "items": [
             {

@@ -63,7 +63,7 @@
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 col-one">
                     <div class="d-flex text-banner">
                         <h1 class="wow fadeInLeft"><b>G & O <b class="color-primary">Restaurante</b></b></h1>
-                        <p class="wow fadeInLeft delay-02s">Trabalho de graduação Realizado por Gustavo Aniceto e Otavio Barreiro, supervisionado pelo professor Marcos Assis.</p>
+                        <p class="wow fadeInLeft delay-02s">Trabalho de graduação Realizado por Gustavo Aniceto e Otavio Barreiro, supervisionado pelo professor Marco Assis.</p>
                         <div class="wow fadeIn delay-05s">
 
                             <a class="btn btn-yellow mt-4 mr-3"  href="#cardapio">
@@ -436,7 +436,7 @@
 
         <script>
             document.getElementById("gerar-link-pagamento").addEventListener("click", function() {
-                fetch("http://127.0.0.1:5000/gerar-link-pagamento")
+                fetch("http://127.0.0.1:5500")
                     .then(response => response.json())
                     .then(data => {
                         window.location.href = data.link;
